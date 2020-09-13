@@ -16,8 +16,11 @@ class LoginHOC extends Component {
                     <View style={styles.activePoint} ></View>
                     <View style={this.props.step === 1 ? styles.unActivePoint : styles.activePoint} ></View>
                 </View>
-                {this.props.footer()}
-                {this.props.submit()}
+                <View>
+
+                    {this.props.footer()}
+                    {/* {this.props.submit()} */}
+                </View>
 
             </View>
 
@@ -28,6 +31,7 @@ import colors from '../../Assets/colors'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        height: 100,
         backgroundColor: "#FFFF"
     },
     header: {

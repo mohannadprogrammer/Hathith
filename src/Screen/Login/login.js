@@ -11,47 +11,51 @@ class Login extends Component {
             <LoginHOC
                 step={1}
                 footer={() => (
-                    <View style={styles.footer}>
-                        <Text style={styles.title}>تسجيل الدخول</Text>
-                        <TextInput
-                            style={{
-                                width: "100%",
-                                borderColor: colors.light_gray,
-                                borderWidth: 1,
+                    <View>
+                        <View style={styles.footer}>
+                            <Text style={styles.title}>تسجيل الدخول</Text>
+                            <TextInput
+                                style={{
+                                    width: "100%",
+                                    borderColor: colors.light_gray,
+                                    borderWidth: 1,
 
-                            }}
-                        // onChangeText={text => onChangeText(text)}
-                        // value={"value"}
+                                }}
+                            // onChangeText={text => onChangeText(text)}
+                            // value={"value"}
 
-                        />
-                        <TouchableOpacity
-                            style={styles.buttonContainer}
-                            onPress={() => navigation.navigate('Check')}>
-                            <Text style={styles.title}>تخطي</Text>
-                        </TouchableOpacity>
-
-                    </View>
-                )}
-
-                submit={() => (
-                    <View style={styles.submit} >
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Check')}
-                            style={styles.botton}
-                        >
-
-                            <Text style={{ color: "#FFFF", fontSize: 24 }}>تأكيد</Text>
-                        </TouchableOpacity>
-                        <View
-                            style={styles.line}
-                        >
+                            />
+                            <TouchableOpacity
+                                style={styles.buttonContainer}
+                                onPress={() => navigation.navigate('Check')}>
+                                <Text style={styles.title}>تخطي</Text>
+                            </TouchableOpacity>
 
                         </View>
-                        <View>
-                            <Text style={{ textAlign: "center", color: colors.orange, fontSize: 12 }}>استخدامك لهاذا التطبيق يعني موافقتك على سياسة و شروط الاستخدام</Text>
+                        <View style={styles.submit} >
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Check')}
+                                style={styles.botton}
+                            >
+
+                                <Text style={{ color: "#FFFF", fontSize: 24 }}>تأكيد</Text>
+                            </TouchableOpacity>
+                            <View
+                                style={styles.line}
+                            >
+
+                            </View>
+                            <View>
+                                <Text style={{ textAlign: "center", color: colors.orange, fontSize: 12 }}>استخدامك لهاذا التطبيق يعني موافقتك على سياسة و شروط الاستخدام</Text>
+                            </View>
                         </View>
                     </View>
+
                 )}
+
+            // submit={() => (
+
+            // )}
             >
 
             </LoginHOC>
@@ -65,20 +69,16 @@ import colors from '../../Assets/colors'
 const styles = StyleSheet.create({
 
     footer: {
-        // flex: 1,
         padding: 20,
-        alignItems: 'flex-end'
     },
     title: {
         paddingBottom: 16,
         paddingTop: 16,
-        fontSize: 22,
+        fontSize: 16,
         color: colors.orange
 
     },
     submit: {
-        flex: 1,
-        position: "absolute",
         bottom: 0,
         width: "100%",
         padding: 20,
@@ -92,11 +92,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: colors.orange,
-        padding: 10,
+        padding: 20,
         borderRadius: 10
     },
     line: {
-        flex: 1,
         width: "80%",
         height: 3,
         marginTop: 15,
