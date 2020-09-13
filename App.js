@@ -10,9 +10,12 @@ export default class App extends Component {
     // After having done stuff (such as async tasks) hide the splash screen
     SplashScreen.hide();
   }
- 
+
   render() {
     return (
+      // <View>
+      //   <Text>mohannad</Text>
+      // </View>
 
       <MainStackNavigator />
     )
