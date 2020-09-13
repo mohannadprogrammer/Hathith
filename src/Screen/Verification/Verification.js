@@ -27,10 +27,11 @@ class Verification extends Component {
                 // ref="codeInputRef1"
                 secureTextEntry
                 className={'border-b'}
-                space={10}
+                space={20}
                 size={30}
                 activeColor={colors.orange}
                 inactiveColor={colors.gray}
+                codeLength={4}
                 inputPosition='center'
                 onFulfill={(code) => { alert("successfull") }}
               />
