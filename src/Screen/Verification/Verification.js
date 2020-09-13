@@ -11,48 +11,50 @@ class Verification extends Component {
       <LoginHOC
         step={2}
         footer={() => (
-          <View style={styles.footer}>
-            <Text style={styles.title}>ادخل رقم التحقق</Text>
-            <View
-              style={
-                {
-                  justifyContent: "center",
-                  alignSelf: "center",
-                  // backgroundColor: "red",
-                  height: 100
+          <View>
+            <View style={styles.footer}>
+              <Text style={styles.title}>ادخل رقم التحقق</Text>
+              <View
+                style={
+                  {
+                    justifyContent: "center",
+                    alignSelf: "center",
+                    // backgroundColor: "red",
+                    height: 100
+                  }
                 }
-              }
-            >
-              <CodeInput
-                // ref="codeInputRef1"
-                secureTextEntry
-                className={'border-b'}
-                space={20}
-                size={30}
-                activeColor={colors.orange}
-                inactiveColor={colors.gray}
-                codeLength={4}
-                inputPosition='center'
-                onFulfill={(code) => { alert("successfull") }}
-              />
+              >
+                <CodeInput
+                  // ref="codeInputRef1"
+                  secureTextEntry
+                  className={'border-b'}
+                  space={20}
+                  size={30}
+                  activeColor={colors.orange}
+                  inactiveColor={colors.gray}
+                  codeLength={4}
+                  inputPosition='center'
+                  onFulfill={(code) => { alert("successfull") }}
+                />
+              </View>
+              <Text style={{ color: colors.orange, textAlign: "center", alignSelf: "center" }}>يمكنك ارسال بعد  1:59</Text>
+
             </View>
-            <Text style={{ color: colors.orange, textAlign: "center", alignSelf: "center" }}>يمكنك ارسال بعد  1:59</Text>
+            <View style={styles.submit} >
+              <TouchableOpacity
+                onPress={() => navigation.navigate('main')}
+                style={styles.botton}
+              >
 
+                <Text style={{ color: "#FFFF", fontSize: 24 }}>تأكيد</Text>
+              </TouchableOpacity>
+
+            </View>
           </View>
+
         )}
 
-        submit={() => (
-          <View style={styles.submit} >
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Check')}
-              style={styles.botton}
-            >
 
-              <Text style={{ color: "#FFFF", fontSize: 24 }}>تأكيد</Text>
-            </TouchableOpacity>
-
-          </View>
-        )}
       >
 
       </LoginHOC>
@@ -66,20 +68,16 @@ import colors from '../../Assets/colors'
 const styles = StyleSheet.create({
 
   footer: {
-    // flex: 1,
     padding: 20,
-    alignItems: 'flex-end'
   },
   title: {
     paddingBottom: 16,
     paddingTop: 16,
-    fontSize: 22,
+    fontSize: 16,
     color: colors.orange
 
   },
   submit: {
-    flex: 1,
-    position: "absolute",
     bottom: 0,
     width: "100%",
     padding: 20,
@@ -93,11 +91,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.orange,
-    padding: 10,
+    padding: 20,
     borderRadius: 10
   },
   line: {
-    flex: 1,
     width: "80%",
     height: 3,
     marginTop: 15,
