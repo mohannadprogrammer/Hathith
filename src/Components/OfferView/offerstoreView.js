@@ -1,29 +1,34 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, ImageBackground, TouchableOpacity, Image, ScrollView } from 'react-native'
 import colors from '../../Assets/colors'
 
-export default class newStore extends Component {
+export default class offerstoreView extends Component {
     render() {
         return (
-            <TouchableOpacity style={styles.container}>
+            <View style={styles.container}>
                 <View style={styles.header}>
                     <Image
                         style={styles.image}
-                        source={require('../../../assets/images/logo.jpg')}
+                        source={require('../../../assets/images/king.png')}
                     />
-                    <View style={styles.info}>
-                        <Text style={styles.text}> كنتاكي </Text>
-                    </View>
+                    <Text style={styles.text}> كنج بيرقر </Text>
                 </View>
-            </TouchableOpacity>
+                <View style={styles.info}>
+               
+                    <Text style={styles.text}> 4.5</Text>
+                </View>
+
+                
+               
+
+            </View>
         )
     }
 }
-
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#FFFF",
-        padding: 20,
+        padding: 12,
         margin: 5,
         borderRadius: 16,
     },
@@ -41,18 +46,9 @@ const styles = StyleSheet.create({
     },
     text:
     {
+        paddingLeft:22,
         color: colors.orange,
-    },
-    info: {
-        flexDirection: "row-reverse",
-        justifyContent: "space-around",
-        borderWidth: 1,
-        flex: 1,
-        borderRadius: 5,
-        borderColor: colors.light_gray,
-        padding: 5,
-        margin: 5
+        
+    }
 
-    },
 })
-

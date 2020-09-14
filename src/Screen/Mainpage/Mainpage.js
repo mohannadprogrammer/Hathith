@@ -1,47 +1,51 @@
 import React from 'react';
-import {  StyleSheet, View, Text, TouchableOpacity, Image, FlatList } from 'react-native';
-
+import { StyleSheet, View, Text, TouchableOpacity, Image, FlatList, ImageBackground, Dimensions } from 'react-native';
+import Header from '../../Components/Header/Header'
 import Carousel from '../../Components/Carousel/Carousel'
 import { dummyData } from '../../../data/data'
-import {CATEGORIES} from '../../../data/dummy-data'
+import OfferView from '../../Components/OfferView/offerstoreView'
+import Icons from '../../Assets/Icons';
 
-const renderGridItem = itemData => {
-  return (
-    <View style={styles.gridItem}>
-      <Text>{itemData.item.title}</Text>
-    </View>
-  );
-};
+export default class Mainpage extends React.Component {
 
-  export default class Mainpage extends React.Component {
-    
-   
+
   render() {
-   
-  
+
+
     const { navigation } = this.props
     return (
 
       <View style={styles.container}>
+        <Header name="المتاجر" />
         <View style={{ flex: 1 }}>
           <Carousel data={dummyData} />
 
 
         </View>
-     
+
         <View style={{ flex: 1 }}>
           <Text style={styles.cardtitle}>المتاجر الاقرب</Text>
+          
+          
+          <View style={{ flex: 1,  alignItems: 'center'}}>
+       
           <FlatList
-      keyExtractor={(item, index) => item.id}
-      data={CATEGORIES}
-      renderItem={renderGridItem}
-      numColumns={2}
-    />
-        {/* <TouchableOpacity style={card}> 
-        <Image style={cardItem} source={{uri: 'https://cdn.pixabay.com/photo/2019/10/29/20/39/delta-4588091_960_720.jpg'}}/>
-          <Text style={cardText}>title</Text>
-        </TouchableOpacity> */}
+            data={[{ tile: "alsdf", key: "3 " }, { key: "1" }, { key: "2" },{ key: "4" }]}
+            renderItem={({ item, ...rest }) => <OfferView key={item.key} />}
+            numColumns={2}
+            // horizontal
+            contentContainerStyle={{
+              flix: 1,
+              // backgroundColor: 'red',
+              width:Dimensions.get('screen').width
+                        }}
+            style={{  paddingRight:44 }}
+          />
+          
+          
+          </View>
         </View>
+
       </View>
 
     );
@@ -58,8 +62,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'red'
   },
   cardtitle: {
-    fontSize: 22,
-    color: '#CD853F'
+    fontSize: 14,
+    color: '#CD853F',
+    paddingRight: 10
   },
   cardText: {
     fontSize: 30,
@@ -68,7 +73,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     marginBottom: 10,
-    marginLeft :'2%',
+    marginLeft: '2%',
     width: '96%',
     shadowColor: '#000',
     shadowOpacity: 1,
@@ -78,14 +83,10 @@ const styles = StyleSheet.create({
     }
 
   },
-  cardItem: {
-    width: '100%',
-    height: 200,
-    resizeMode: 'cover'
-  },
-  gridItem: {
+  image: {
     flex: 1,
-    margin: 15,
-    height: 150
-  }
+    resizeMode: "cover",
+    justifyContent: "center"
+  },
+
 });

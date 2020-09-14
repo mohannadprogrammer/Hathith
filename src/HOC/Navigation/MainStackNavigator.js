@@ -4,7 +4,6 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
-import Mainpage from '../../Screen/Mainpage/Mainpage'
 
 import Screen from '../../Screen/index'
 import Icons from '../../Assets/Icons';
@@ -45,7 +44,7 @@ function Main() {
       />
       <Tab.Screen name="التنبيهات" component={Screen.Notification} options={{ tabBarBadge: 3 }} />
       <Tab.Screen name="الطلبات" component={Screen.Orders} />
-      <Tab.Screen name="المتاجر" component={Mainpage} />
+      <Tab.Screen name="المتاجر" component={Screen.Mainpage} />
     </Tab.Navigator>
   )
 }
