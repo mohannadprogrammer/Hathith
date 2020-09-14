@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
-import Login from '../../Screen/Login/login'
-import Verification from '../../Screen/Verification/Verification'
 import Screen from '../../Screen/index'
 import Icons from '../../Assets/Icons';
 import colors from '../../Assets/colors'
@@ -37,7 +35,7 @@ function Main() {
         inactiveTintColor: 'gray',
       }}
     >
-      <Tab.Screen name="صفحتي" component={Text}
+      <Tab.Screen name="صفحتي" component={Screen.Personal}
         options={{ tabBarBadge: 3 }}
       />
       <Tab.Screen name="التنبيهات" component={Screen.Notification} options={{ tabBarBadge: 3 }} />
@@ -58,10 +56,10 @@ function MainStackNavigator() {
         animationTypeForReplace="pop"
       >
         <Stack.Screen name="main" component={Main} />
-        <Stack.Screen name='شاشه التسجيل' component={Login} />
+        <Stack.Screen name='شاشه التسجيل' component={Screen.Login} />
         <Stack.Screen
           name='Check'
-          component={Verification}
+          component={Screen.Verification}
         />
       </Stack.Navigator>
 
