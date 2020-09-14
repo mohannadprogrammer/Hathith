@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native'
 import colors from '../../Assets/colors'
 
+import I18n from 'react-native-i18n'
+const io = I18n.currentLocale()
+
 export default class offerView extends Component {
     render() {
         return (
@@ -20,15 +23,16 @@ export default class offerView extends Component {
                     <Text style={styles.text}>الفراخ البوست  </Text>
                 </View>
                 <View style={styles.info}>
-                    <Text style={styles.text}>300 ريال </Text>
-                    <Text style={styles.text}>300 ريال</Text>
+                    <Text style={styles.textDelete} lineBreakMode="tail" >300 ريال</Text>
+                    <Text style={styles.text}> - </Text>
+                    <Text style={styles.textNew}>270 ريال</Text>
                 </View>
                 <TouchableOpacity
                     // onPress={() => navigation.navigate('Check')}
                     style={styles.botton}
                 >
 
-                    <Text style={{ color: "#FFFF", fontSize: 16 }}>دخول الطلب</Text>
+                    <Text style={{ color: "#FFFF", fontSize: 16 }}>طلب</Text>
                 </TouchableOpacity>
 
             </View>
@@ -37,13 +41,14 @@ export default class offerView extends Component {
 }
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         backgroundColor: "#FFFF",
         padding: 10,
         margin: 5,
         borderRadius: 16,
     },
     header: {
-        flexDirection: 'row-reverse',
+        flexDirection: io === "en-US" ? "row-reverse" : "row",
         alignItems: "center"
     },
     image: {
@@ -54,12 +59,19 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end'
 
     },
+    textDelete: {
+        textDecorationLine: 'line-through',
+        color: colors.danger
+    },
+    textNew: {
+        color: colors.green
+    },
     text:
     {
         color: colors.orange,
     },
     info: {
-        flexDirection: "row-reverse",
+        flexDirection: io === "en-US" ? "row-reverse" : "row",
         justifyContent: "space-around",
         borderWidth: 1,
         borderRadius: 5,

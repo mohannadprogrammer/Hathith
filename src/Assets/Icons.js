@@ -10,6 +10,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto'
 import Foundation from 'react-native-vector-icons/Foundation'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 const colors = require("./colors.js")
 
@@ -25,9 +26,18 @@ const Attention = (color) => (
 const Person = (color) => (
     <Ionicons name="person" size={20} color={color} />
 );
+
+const Cart = (color) => (
+    <Entypo name="shopping-cart" size={20} color={color} />
+)
+const Back = (color) => (
+    <MaterialIcons name="arrow-back-ios" size={20} color={color} />
+)
 module.exports = {
     Stores,
     Orders,
     Attention,
-    Person
+    Person,
+    Cart,
+    Back
 }

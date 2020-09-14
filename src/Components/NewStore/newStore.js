@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import colors from '../../Assets/colors'
 
+import I18n from 'react-native-i18n'
+const io = I18n.currentLocale()
+
 export default class newStore extends Component {
     render() {
         return (
@@ -21,13 +24,14 @@ export default class newStore extends Component {
 }
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         backgroundColor: "#FFFF",
         padding: 20,
         margin: 5,
         borderRadius: 16,
     },
     header: {
-        flexDirection: 'row-reverse',
+        flexDirection: io === "en-US" ? "row-reverse" : "row",
         alignItems: "center"
     },
     image: {
@@ -43,7 +47,7 @@ const styles = StyleSheet.create({
         color: colors.orange,
     },
     info: {
-        flexDirection: "row-reverse",
+        flexDirection: io === "en-US" ? "row-reverse" : "row",
         justifyContent: "space-around",
         borderWidth: 1,
         flex: 1,

@@ -3,6 +3,8 @@ import { Text, View, ImageBackground, Image, StyleSheet } from 'react-native'
 import Header from '../../Components/Header/Header'
 import colors from '../../Assets/colors'
 
+import I18n from 'react-native-i18n'
+const io = I18n.currentLocale()
 export default class personal extends Component {
     render() {
         return (
@@ -28,7 +30,7 @@ export default class personal extends Component {
                         <Text style={{ color: colors.orange }}>محمد </Text>
                     </View>
                     <View style={styles.info}>
-                        <Text style={{ color: colors.orange }}>محمد </Text>
+                        <Text style={{ color: colors.orange }}>عدد الطلبات </Text>
                         <Text style={{ color: colors.orange }}>5 </Text>
                     </View>
                 </View>
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
         borderColor: colors.light_gray
     },
     info: {
-        flexDirection: "row-reverse",
+        flexDirection: io === "en-US" ? "row-reverse" : "row",
         justifyContent: "space-between",
         borderWidth: 1,
         borderRadius: 5,

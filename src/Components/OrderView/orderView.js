@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import colors from '../../Assets/colors'
 
+import I18n from 'react-native-i18n'
+const io = I18n.currentLocale()
 export default class orderView extends Component {
     render() {
         return (
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
     },
     header: {
-        flexDirection: 'row-reverse',
+        flexDirection: io === "en-US" ? "row-reverse" : "row",
         alignItems: "center"
     },
     image: {
@@ -58,8 +60,8 @@ const styles = StyleSheet.create({
         color: colors.orange,
     },
     info: {
-        flexDirection: "row-reverse",
-        justifyContent: "space-around",
+        flexDirection: io === "en-US" ? "row-reverse" : "row",
+        justifyContent: "space-between",
         borderWidth: 1,
         borderRadius: 5,
         borderColor: colors.light_gray,
