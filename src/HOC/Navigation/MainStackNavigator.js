@@ -7,8 +7,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import Screen from '../../Screen/index'
 import Icons from '../../Assets/Icons';
 import colors from '../../Assets/colors'
+
+
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator();
+
 function Main() {
   return (
     <Tab.Navigator
@@ -47,14 +50,11 @@ function Main() {
 function MainStackNavigator() {
   return (
     <NavigationContainer>
-      {/* <Login /> */}
-      {/* <View>
-        <Text>mohannad</Text>
-      </View> */}
       <Stack.Navigator initialRouteName='Login'
         headerMode="none"
         animationTypeForReplace="pop"
       >
+        {/* <Stack.Screen name="Catogray" component={Screen.Catogary} /> */}
         <Stack.Screen name="main" component={Main} />
         <Stack.Screen name='شاشه التسجيل' component={Screen.Login} />
         <Stack.Screen
