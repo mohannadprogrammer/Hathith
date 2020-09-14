@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import Login from '../../Screen/Login/login'
-import Verification from '../../Screen/Verification/Verification'
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+
 import Mainpage from '../../Screen/Mainpage/Mainpage'
 
+import Screen from '../../Screen/index'
 import Icons from '../../Assets/Icons';
 import colors from '../../Assets/colors'
+
+
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator();
+
 function Main() {
   return (
     <Tab.Navigator
@@ -38,11 +40,11 @@ function Main() {
         inactiveTintColor: 'gray',
       }}
     >
-      <Tab.Screen name="صفحتي" component={Text}
+      <Tab.Screen name="صفحتي" component={Screen.Personal}
         options={{ tabBarBadge: 3 }}
       />
-      <Tab.Screen name="التنبيهات" component={Text} options={{ tabBarBadge: 3 }} />
-      <Tab.Screen name="الطلبات" component={Text} />
+      <Tab.Screen name="التنبيهات" component={Screen.Notification} options={{ tabBarBadge: 3 }} />
+      <Tab.Screen name="الطلبات" component={Screen.Orders} />
       <Tab.Screen name="المتاجر" component={Mainpage} />
     </Tab.Navigator>
   )
@@ -50,20 +52,17 @@ function Main() {
 function MainStackNavigator() {
   return (
     <NavigationContainer>
-      {/* <Login /> */}
-      {/* <View>
-        <Text>mohannad</Text>
-      </View> */}
       <Stack.Navigator initialRouteName='Login'
         headerMode="none"
         animationTypeForReplace="pop"
       >
-        <Stack.Screen name='شاشه التسجيل' component={Login} />
+        {/* <Stack.Screen name="Catogray" component={Screen.Catogary} /> */}
+        <Stack.Screen name="main" component={Main} />
+        <Stack.Screen name='شاشه التسجيل' component={Screen.Login} />
         <Stack.Screen
           name='Check'
-          component={Verification}
+          component={Screen.Verification}
         />
-        <Stack.Screen name="main" component={Main} />
       </Stack.Navigator>
 
     </NavigationContainer>
