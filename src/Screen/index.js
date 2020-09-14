@@ -1,0 +1,12 @@
+import Login from "./Login/login"
+import Verification from './Verification/Verification'
+import Orders from './Orders/Orders'
+import Notification from './Notification/notification'
+
+
+module.exports = {
+    Login,
+    Verification,
+    Orders,
+    Notification
+}
