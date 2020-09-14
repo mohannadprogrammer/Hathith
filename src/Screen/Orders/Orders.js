@@ -11,8 +11,13 @@ export default class Orders extends Component {
                 <Header name="الطلبات" />
                 <View style={styles.container}>
                     <FlatList
-                        data={[{ tile: "alsdf" }, {}]}
-                        renderItem={() => <OrderView />}
+                        data={[{ tile: "alsdf", key: "1" }, { key: "2" }]}
+                        renderItem={({ item, index, separators }) => (
+                            <View
+                                key={item.key}
+                            >
+                                <OrderView />
+                            </View>)}
                     />
                 </View>
             </View>
