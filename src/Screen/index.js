@@ -9,8 +9,9 @@ import Bill from './Bill/bill'
 import Cart from './Cart/cart'
 import SelectLocation from './SelectLocation/selectLocation'
 import OrderMontor from './OrderMontor/orderMontor'
-
+import Mainpage from './Mainpage/Mainpage'
 module.exports = {
+    Mainpage,
     Login,
     Verification,
     Orders,

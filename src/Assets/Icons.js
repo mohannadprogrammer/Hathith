@@ -20,6 +20,10 @@ const Stores = (color) => (
 const Orders = (color) => (
     <FontAwesome5 name="truck" size={20} color={color} />
 );
+
+const star = (color) => (
+    <FontAwesome5 name="star" size={20} color={color} />
+);
 const Attention = (color) => (
     <Ionicons name='megaphone' size={20} color={color} />
 );
