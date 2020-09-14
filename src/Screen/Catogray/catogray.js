@@ -1,8 +1,41 @@
 import React, { Component } from 'react'
 import { Text, View, Image, StyleSheet, Dimensions, FlatList } from 'react-native'
 import CartHeader from '../../Components/CartHeader/cartHeader'
+import Product from '../../Components/Product/product'
+
+
 export default class catogray extends Component {
     render() {
+        const data = [
+            {
+                key: "1",
+                title: "nihs",
+                image: "../../../image/footer.png"
+            },
+            {
+                key: "2",
+                title: "nihs",
+                image: "../image/footer.png"
+            }, {
+                key: "3",
+                title: "nihs",
+                image: "../image/footer.png"
+            }
+            , {
+                key: "4",
+                title: "nihs",
+                image: "../image/footer.png"
+            }, {
+                key: "5",
+                title: "nihs",
+                image: "../image/footer.png"
+            }, {
+                key: "6",
+                title: "nihs",
+                image: "../image/footer.png"
+            },
+
+        ]
         return (
             <View style={{ flex: 1 }}>
                 <CartHeader name="المطاعم"></CartHeader>
@@ -12,7 +45,16 @@ export default class catogray extends Component {
                     </View>
                     <View style={styles.list}>
                         <FlatList
+                            data={data}
+                            numColumns={2}
 
+                            renderItem={({ item, index, separator }) => (
+                                // <Text>sldf;lsd</Text>
+                                <Product
+
+                                    data={item}
+                                />
+                            )}
                         />
                     </View>
                 </View>
@@ -25,7 +67,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     background: {
-        // flex: 1,
+        flex: 1,
         position: "absolute"
     },
     list: {

@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import colors from '../../Assets/colors'
 import Icon from '../../Assets/Icons'
+
+import I18n from 'react-native-i18n'
+const io = I18n.currentLocale()
+console.log(io)
 export default class cartHeader extends Component {
     render() {
         return (
@@ -28,7 +32,7 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: "space-between",
         alignItems: "center",
-        flexDirection: "row",
+        flexDirection: io === "en-US" ? "row" : "row-reverse",
         backgroundColor: "#FFFF",
         padding: 15
     },
