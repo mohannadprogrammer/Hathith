@@ -1,110 +1,91 @@
-import React, { Component } from 'react';
-import PhoneInput from "react-native-phone-number-input";
-import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Button } from 'react-native'
-import MainpageHOC from '../../HOC/MainpageHoc/Mainpage'
-class Mainpage extends Component {
-    render() {
+import React from 'react';
+import {  StyleSheet, View, Text, TouchableOpacity, Image, FlatList } from 'react-native';
 
-        // const [value, onChangeText] = React.useState('ادخل رقم الجوال');
-        const { navigation } = this.props
-        return (
-            <LoginHOC
-                step={1}
-                footer={() => (
-                    <View style={styles.footer}>
-                        <Text style={styles.title}>تسجيل الدخول</Text>
-                        <TextInput
-                            style={{
-                                width: "100%",
-                                borderColor: colors.light_gray,
-                                borderWidth: 1,
+import Carousel from '../../Components/Carousel/Carousel'
+import { dummyData } from '../../../data/data'
+import {CATEGORIES} from '../../../data/dummy-data'
 
-                            }}
-                        // onChangeText={text => onChangeText(text)}
-                        // value={"value"}
+const renderGridItem = itemData => {
+  return (
+    <View style={styles.gridItem}>
+      <Text>{itemData.item.title}</Text>
+    </View>
+  );
+};
 
-                        />
-                        <TouchableOpacity
-                            style={styles.buttonContainer}
-                            onPress={() => navigation.navigate('Check')}>
-                            <Text style={styles.title}>تخطي</Text>
-                        </TouchableOpacity>
+  export default class Mainpage extends React.Component {
+    
+   
+  render() {
+   
+  
+    const { navigation } = this.props
+    return (
 
-                    </View>
-                )}
-
-                submit={() => (
-                    <View style={styles.submit} >
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Check')}
-                            style={styles.botton}
-                        >
-
-                            <Text style={{ color: "#FFFF", fontSize: 12}}>تأكيد</Text>
-                        </TouchableOpacity>
-                        <View
-                            style={styles.line}
-                        >
-
-                        </View>
-                        <View>
-                            <Text style={{ textAlign: "center", color: colors.orange, fontSize: 12 }}>استخدامك لهاذا التطبيق يعني موافقتك على سياسة و شروط الاستخدام</Text>
-                        </View>
-                    </View>
-                )}
-            >
-
-            </LoginHOC>
+      <View style={styles.container}>
+        <View style={{ flex: 1 }}>
+          <Carousel data={dummyData} />
 
 
+        </View>
+     
+        <View style={{ flex: 1 }}>
+          <Text style={styles.cardtitle}>المتاجر الاقرب</Text>
+          <FlatList
+      keyExtractor={(item, index) => item.id}
+      data={CATEGORIES}
+      renderItem={renderGridItem}
+      numColumns={2}
+    />
+        {/* <TouchableOpacity style={card}> 
+        <Image style={cardItem} source={{uri: 'https://cdn.pixabay.com/photo/2019/10/29/20/39/delta-4588091_960_720.jpg'}}/>
+          <Text style={cardText}>title</Text>
+        </TouchableOpacity> */}
+        </View>
+      </View>
 
-        )
-    }
+    );
+  }
 }
-import colors from '../../Assets/colors'
+
 const styles = StyleSheet.create({
-
-    footer: {
-        flex: 1,
-        padding: 20,
-        alignItems: 'flex-end'
-    },
-    title: {
-        paddingBottom: 5,
-        paddingTop: 16,
-        fontSize: 22,
-        color: colors.orange
-
-    },
-    submit: {
-        flex: 1,
-        position: "absolute",
-        bottom: 0,
-        width: "100%",
-        padding: 20,
-        justifyContent: "center",
-        alignItems: "center"
-
-    },
-    botton: {
-        flex: 1,
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: colors.orange,
-        padding: 5,
-        borderRadius: 10
-    },
-    line: {
-        flex: 1,
-        width: "80%",
-        height: 3,
-        marginTop: 15,
-        marginBottom: 15,
-        backgroundColor: colors.gray
+  container: {
+    flex: 3,
+    // backgroundColor: 'blue'
+  },
+  slide: {
+    flex: 1,
+    backgroundColor: 'red'
+  },
+  cardtitle: {
+    fontSize: 22,
+    color: '#CD853F'
+  },
+  cardText: {
+    fontSize: 30,
+    padding: 10
+  },
+  card: {
+    backgroundColor: '#fff',
+    marginBottom: 10,
+    marginLeft :'2%',
+    width: '96%',
+    shadowColor: '#000',
+    shadowOpacity: 1,
+    shadowOffset: {
+      width: 3,
+      height: 3
     }
 
-
-})
-
-export default Mainpage
+  },
+  cardItem: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'cover'
+  },
+  gridItem: {
+    flex: 1,
+    margin: 15,
+    height: 150
+  }
+});

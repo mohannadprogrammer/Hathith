@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import Login from '../../Screen/Login/login'
 import Verification from '../../Screen/Verification/Verification'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import Mainpage from '../../Screen/Mainpage/Mainpage'
 
 import Icons from '../../Assets/Icons';
 import colors from '../../Assets/colors'
@@ -42,7 +43,7 @@ function Main() {
       />
       <Tab.Screen name="التنبيهات" component={Text} options={{ tabBarBadge: 3 }} />
       <Tab.Screen name="الطلبات" component={Text} />
-      <Tab.Screen name="المتاجر" component={Text} />
+      <Tab.Screen name="المتاجر" component={Mainpage} />
     </Tab.Navigator>
   )
 }
