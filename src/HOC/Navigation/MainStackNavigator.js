@@ -42,6 +42,9 @@ function Main() {
       <Tab.Screen name="صفحتي" component={Screen.Personal}
         options={{ tabBarBadge: 3 }}
       />
+      <Tab.Screen name="بروفيل" component={Screen.Profile}
+
+      />
       <Tab.Screen name="التنبيهات" component={Screen.Notification} options={{ tabBarBadge: 3 }} />
       <Tab.Screen name="الطلبات" component={Screen.Orders} />
       <Tab.Screen name="المتاجر" component={Screen.Mainpage} />

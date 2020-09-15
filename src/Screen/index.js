@@ -3,6 +3,7 @@ import Verification from './Verification/Verification'
 import Orders from './Orders/Orders'
 import Notification from './Notification/notification'
 import Personal from './Personal/personal'
+import Profile from './Profile/Profile'
 import Catogary from './Catogray/catogray'
 import Store from "./Store/Store"
 import Bill from './Bill/bill'
@@ -17,6 +18,7 @@ module.exports = {
     Orders,
     Notification,
     Personal,
+    Profile,
     Bill,
     Cart,
     Catogary,
