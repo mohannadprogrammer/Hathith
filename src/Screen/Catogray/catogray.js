@@ -1,64 +1,51 @@
 import React, { Component } from 'react'
-import { Text, View, Image, StyleSheet, Dimensions, FlatList } from 'react-native'
+import { Text, View, Image, StyleSheet, Dimensions, FlatList, ScrollView } from 'react-native'
 import CartHeader from '../../Components/CartHeader/cartHeader'
 import Product from '../../Components/Product/product'
+import colors from '../../Assets/colors'
 
-
+// import Image from '../../Assets/images/store'
 export default class catogray extends Component {
     render() {
         const data = [
             {
                 key: "1",
-                title: "nihs",
-                image: "../../../image/footer.png"
+                title: "كنتاكي",
+                image: require("../../Assets/images/store/kfc.png")
             },
             {
                 key: "2",
-                title: "nihs",
-                image: "../image/footer.png"
+                title: "ماكدونال الرياض",
+                image: require("../../Assets/images/store/mc.png")
             }, {
                 key: "3",
-                title: "nihs",
-                image: "../image/footer.png"
+                title: "البيك",
+                image: require("../../Assets/images/store/beak.png")
             }
-            , {
-                key: "4",
-                title: "nihs",
-                image: "../image/footer.png"
-            }, {
-                key: "5",
-                title: "nihs",
-                image: "../image/footer.png"
-            }, {
-                key: "6",
-                title: "nihs",
-                image: "../image/footer.png"
-            },
 
         ]
         return (
-            <View style={{ flex: 1 }}>
+            <View style={styles.container} >
                 <CartHeader name="المطاعم"></CartHeader>
-                <View style={styles.container}>
-                    <View style={styles.background}>
-                        <Image style={styles.image} source={require("../../Assets/images/kfc.png")} />
-                    </View>
-                    <View style={styles.list}>
-                        <FlatList
-                            data={data}
-                            numColumns={2}
+                <FlatList
+                    data={data}
+                    numColumns={2}
+                    style={{ flex: 1 }}
+                    renderItem={({ item, index, separators }) => {
+                        // if (item.title === "البيك") {
+                        // let image = require("../../Assets/images/store/beak.png")
+                        // }
+                        return (
+                            <View style={styles.store} key={item.key}>
+                                <Image source={item.image} />
+                                <Text style={{ color: colors.orange, padding: 10 }}>{item.title}</Text>
+                            </View>
+                        )
+                    }}
+                >
 
-                            renderItem={({ item, index, separator }) => (
-                                // <Text>sldf;lsd</Text>
-                                <Product
-
-                                    data={item}
-                                />
-                            )}
-                        />
-                    </View>
-                </View>
-            </View>
+                </FlatList>
+            </View >
         )
     }
 }
@@ -66,19 +53,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    background: {
+    store: {
         flex: 1,
-        position: "absolute"
+        backgroundColor: "#FFF",
+        margin: 5,
+        padding: 10,
+        justifyContent: "center",
+        alignItems: "center"
     },
-    list: {
-        flex: 1,
-        top: 150,
-        // backgroundColor: "red"
-    },
-    image: {
-        height: 200,
-        width: Dimensions.get("window").width,
-        resizeMode: "contain"
-    }
+
+
 })
 
