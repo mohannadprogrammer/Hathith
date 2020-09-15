@@ -42,7 +42,7 @@ class Verification extends Component {
             </View>
             <View style={styles.submit} >
               <TouchableOpacity
-                onPress={() => navigation.navigate('main')}
+                onPress={() => navigation.navigate('Profile')}
                 style={styles.botton}
               >
 

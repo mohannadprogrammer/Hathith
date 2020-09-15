@@ -9,14 +9,25 @@ export default class OverViewSale extends Component {
 
         const image = { uri: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" };
         return (
-            <ImageBackground source={image} style={styles.image}>
-                <View style={styles.container}>
+            <TouchableOpacity
+                style={{ flex: 1, borderRadius: 20 }}
+                onPress={() => {
+                    this.props.navigation.navigate("Catogray")
+                    // console.log("ksldklsdk")
+                }}
+            >
+                <ImageBackground source={image} style={styles.image}
 
-                    <Text style={styles.text} >المطاعم</Text>
+                >
+                    <View style={styles.container}>
+
+                        <Text style={styles.text} >المطاعم</Text>
 
 
-                </View>
-            </ImageBackground>
+                    </View>
+                </ImageBackground>
+            </TouchableOpacity>
+
         )
     }
 }
@@ -35,8 +46,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         flexDirection: "column",
         // width: 155,
-        margin:10,
-        borderRadius:20,
+        margin: 10,
+        borderRadius: 20,
         // height: 100,
         // borderRadius: 200,
         paddingTop: 63,

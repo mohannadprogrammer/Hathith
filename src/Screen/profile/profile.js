@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Image, StyleSheet, TextInput } from 'react-native'
+import { Text, View, TouchableOpacity, Image, StyleSheet, TextInput } from 'react-native'
 import Header from '../../Components/Header/Header'
 import colors from '../../Assets/colors'
 
@@ -11,7 +11,16 @@ export default class Profile extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <Header name="البروفايل"></Header>
+                {/* <Header name="البروفايل"></Header> */}
+                <Text
+                    style={{
+                        textAlign: "center",
+                        padding: 15,
+                        fontSize: 24,
+                        color: colors.orange
+                    }}
+                >ادخل بياناتك</Text>
+
                 <View style={styles.container}>
                     <View>
                         <Image
@@ -41,15 +50,18 @@ export default class Profile extends Component {
 
                         />
                     </View>
-                    <View style={styles.info}>
-                        <TextInput
-                            placeholder="عدد الطلبات "
-                            placeholderTextColor={colors.orange}
-                            style={{ height: 40, borderColor: 'gray', width: '100%' }}
+                    <View style={styles.submit} >
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('main')}
+                            style={styles.botton}
+                        >
 
-                        />
+                            <Text style={{ color: "#FFFF", fontSize: 24 }}>تأكيد</Text>
+                        </TouchableOpacity>
+
                     </View>
                 </View>
+                {/* </View> */}
             </View >
         )
     }
@@ -80,5 +92,21 @@ const styles = StyleSheet.create({
         padding: 5,
         margin: 15
 
-    }
+    }, submit: {
+        bottom: 0,
+        width: "100%",
+        padding: 20,
+        justifyContent: "center",
+        alignItems: "center"
+
+    },
+    botton: {
+        flex: 1,
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: colors.orange,
+        padding: 20,
+        borderRadius: 10
+    },
 })
