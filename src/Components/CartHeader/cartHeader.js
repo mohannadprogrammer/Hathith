@@ -19,18 +19,22 @@ export default class cartHeader extends Component {
                     {Icon.Back(colors.orange)}
 
                 </TouchableOpacity>
-                <Text style={styles.headerName}>{this.props.name} </Text>
-                <TouchableOpacity
-                    onPress={() => {
-                        this.props.navigate.navigate("Cart");
+                <Text style={styles.headerName} >{this.props.name} </Text>
 
-                        // alert("akjsdkfkajsd")
-                    }}
+                {!this.props.noCart ?
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.props.navigate.navigate("Cart");
 
-                >
-                    {Icon.Cart(colors.orange)}
+                            // alert("akjsdkfkajsd")
+                        }}
 
-                </TouchableOpacity>
+                    >
+                        {Icon.Cart(colors.orange)}
+
+                    </TouchableOpacity> : null
+                }
+
             </View>
         )
     }
@@ -47,6 +51,8 @@ const styles = StyleSheet.create({
     headerName: {
         color: colors.orange,
         fontSize: 20,
+        textAlign: "center",
+        // width: '100%',
         fontWeight: "bold"
     }
 })

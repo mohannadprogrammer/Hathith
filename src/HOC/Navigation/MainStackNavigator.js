@@ -55,6 +55,7 @@ function MainStackNavigator() {
         headerMode="none"
         animationTypeForReplace="pop"
       >
+        <Stack.Screen name="Bill" component={Screen.Bill} />
         <Stack.Screen name="Catogray" component={Screen.Catogary} />
         <Stack.Screen name="Store" component={Screen.Store} />
         <Stack.Screen name="Cart" component={Screen.Cart} />
