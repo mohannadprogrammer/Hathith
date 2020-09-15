@@ -42,6 +42,9 @@ function Main() {
       <Tab.Screen name="صفحتي" component={Screen.Personal}
         options={{ tabBarBadge: 3 }}
       />
+       <Tab.Screen name="بروفيل" component={Screen.Profile}
+       
+      />
       <Tab.Screen name="التنبيهات" component={Screen.Notification} options={{ tabBarBadge: 3 }} />
       <Tab.Screen name="الطلبات" component={Screen.Orders} />
       <Tab.Screen name="المتاجر" component={Screen.Mainpage} />
@@ -55,7 +58,7 @@ function MainStackNavigator() {
         headerMode="none"
         animationTypeForReplace="pop"
       >
-        <Stack.Screen name="المتاجر" component={Screen.Mainpage} />
+        <Stack.Screen name="صفحتي" component={Screen.Profile} />
         <Stack.Screen name="Catogray" component={Screen.Catogary} />
         <Stack.Screen name="main" component={Main} />
         <Stack.Screen name='شاشه التسجيل' component={Screen.Login} />
