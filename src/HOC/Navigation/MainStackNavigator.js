@@ -11,6 +11,7 @@ import colors from '../../Assets/colors'
 
 
 const Stack = createStackNavigator()
+const ModaStack = createStackNavigator()
 const Tab = createBottomTabNavigator();
 
 function Main() {
@@ -52,31 +53,49 @@ function Main() {
 }
 function MainStackNavigator() {
   return (
+    // <NavigationContainer>
+    <Stack.Navigator initialRouteName='Login'
+      headerMode="none"
+      animationTypeForReplace="pop"
+    >
+      <Stack.Screen name='شاشه التسجيل' component={Screen.Login} />
+      <Stack.Screen name="Bill" component={Screen.Bill} />
+      <Stack.Screen name="Catogray" component={Screen.Catogary} />
+      <Stack.Screen name="Store" component={Screen.Store} />
+      <Stack.Screen name="Cart" component={Screen.Cart} />
+      <Stack.Screen name="Location" component={Screen.SelectLocation} />
+      <Stack.Screen name="Profile" component={Screen.Profile} />
+      <Stack.Screen name="main" component={Main} />
+      <Stack.Screen
+        name='Check'
+        component={Screen.Verification}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+
+    // {/* </NavigationContainer> */ }
+  )
+}
+
+function RootStackNavigator() {
+  return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login'
+      <ModaStack.Navigator initialRouteName='Login'
         headerMode="none"
         animationTypeForReplace="pop"
+        mode="modal"
       >
-        <Stack.Screen name='شاشه التسجيل' component={Screen.Login} />
-        <Stack.Screen name="Bill" component={Screen.Bill} />
-        <Stack.Screen name="Catogray" component={Screen.Catogary} />
-        <Stack.Screen name="Store" component={Screen.Store} />
-        <Stack.Screen name="Cart" component={Screen.Cart} />
-        <Stack.Screen name="Location" component={Screen.SelectLocation} />
-        <Stack.Screen name="Profile" component={Screen.Profile} />
-        <Stack.Screen name="main" component={Main} />
-        <Stack.Screen
-          name='Check'
-          component={Screen.Verification}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+        <ModaStack.Screen name="Bill" component={MainStackNavigator} />
+
+        <ModaStack.Screen name='modal' component={Screen.Boot} />
+
+      </ModaStack.Navigator>
 
     </NavigationContainer>
   )
 }
 
-export default MainStackNavigator
+export default RootStackNavigator
 
 
 

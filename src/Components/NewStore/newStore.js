@@ -12,7 +12,7 @@ export default class newStore extends Component {
                 <View style={styles.header}>
                     <Image
                         style={styles.image}
-                        source={require('../../../assets/images/logo.jpg')}
+                        source={require('../../Assets/images/logo.png')}
                     />
                     <View style={styles.info}>
                         <Text style={styles.text}> كنتاكي </Text>

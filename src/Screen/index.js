@@ -11,8 +11,11 @@ import Cart from './Cart/cart'
 import SelectLocation from './SelectLocation/selectLocation'
 import OrderMontor from './OrderMontor/orderMontor'
 import Mainpage from './Mainpage/Mainpage'
+import Boot from './Boot/Boot'
+
 module.exports = {
     Mainpage,
+    Boot,
     Login,
     Verification,
     Orders,

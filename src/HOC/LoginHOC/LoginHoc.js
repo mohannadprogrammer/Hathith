@@ -9,7 +9,7 @@ class LoginHOC extends Component {
                 <View style={styles.header}>
                     <Image
                         style={styles.stretch}
-                        source={require('../../../assets/images/logo.jpg')}
+                        source={require('../../Assets/images/logo.png')}
                     />
                 </View>
                 <View style={{ padding: 2, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>

@@ -12,7 +12,7 @@ export default class offerView extends Component {
                 <View style={styles.header}>
                     <Image
                         style={styles.image}
-                        source={require('../../../assets/images/logo.jpg')}
+                        source={require('../../Assets/images/logo.png')}
                     />
                     <Text style={styles.text}> كنتاكي </Text>
                 </View>

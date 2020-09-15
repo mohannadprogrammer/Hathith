@@ -9,7 +9,7 @@ export default product = props => {
     return (
         <View style={styles.container}>
             <View style={styles.card}>
-                <Image source={require("../../Assets/images/logo.jpg")} style={{ width: 50, height: 50, resizeMode: "contain" }} />
+                <Image source={require("../../Assets/images/logo.png")} style={{ width: 50, height: 50, resizeMode: "contain" }} />
                 <Text style={{ color: colors.orange, padding: 3 }}>وجبه كنتاكي صغيرة</Text>
                 <Text style={{ color: colors.orange, padding: 3 }}>30 ر.س</Text>
                 <View style={styles.quntatyView}>

@@ -14,7 +14,7 @@ export default class personal extends Component {
                     <View>
                         <Image
                             style={styles.image}
-                            source={require('../../Assets/images/logo.jpg')}
+                            source={require('../../Assets/images/logo.png')}
                         />
                         <View style={{ height: 40, width: 40, borderRadius: 40, backgroundColor: colors.gray, position: 'absolute', right: 20, bottom: 0 }}>
 

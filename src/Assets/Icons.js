@@ -37,11 +37,15 @@ const Cart = (color) => (
 const Back = (color) => (
     <MaterialIcons name="arrow-back-ios" size={20} color={color} />
 )
+const Boot = (color) => (
+    <Entypo name="menu" size={30} color={color} />
+)
 module.exports = {
     Stores,
     Orders,
     Attention,
     Person,
     Cart,
-    Back
+    Back,
+    Boot
 }
