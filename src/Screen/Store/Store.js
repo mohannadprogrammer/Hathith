@@ -30,7 +30,7 @@ export default class Store extends Component {
         ]
         return (
             <View style={{ flex: 1 }}>
-                <CartHeader name="كنتاكي"></CartHeader>
+                <CartHeader name="كنتاكي" navigate={this.props.navigation}></CartHeader>
                 <View style={styles.container}>
                     <View style={styles.background}>
                         <Image style={styles.image} source={require("../../Assets/images/kfc.png")} />

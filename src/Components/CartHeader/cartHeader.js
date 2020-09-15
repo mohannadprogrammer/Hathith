@@ -11,14 +11,22 @@ export default class cartHeader extends Component {
         return (
             <View style={styles.container}>
                 <TouchableOpacity
-                    onPress={() => { alert("akjsdkfkajsd") }}
+                    onPress={() => {
+                        this.props.navigate.goBack();
+                        // alert("akjsdkfkajsd")
+                    }}
                 >
                     {Icon.Back(colors.orange)}
 
                 </TouchableOpacity>
                 <Text style={styles.headerName}>{this.props.name} </Text>
                 <TouchableOpacity
-                    onPress={() => { alert("akjsdkfkajsd") }}
+                    onPress={() => {
+                        this.props.navigate.navigate("Cart");
+
+                        // alert("akjsdkfkajsd")
+                    }}
+
                 >
                     {Icon.Cart(colors.orange)}
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, StyleSheet, Dimensions, FlatList, ScrollView } from 'react-native'
+import { Text, View, Image, StyleSheet, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import CartHeader from '../../Components/CartHeader/cartHeader'
 import Product from '../../Components/Product/product'
 import colors from '../../Assets/colors'
@@ -26,7 +26,7 @@ export default class catogray extends Component {
         ]
         return (
             <View style={styles.container} >
-                <CartHeader name="المطاعم"></CartHeader>
+                <CartHeader name="المطاعم" navigate={this.props.navigation} ></CartHeader>
                 <FlatList
                     data={data}
                     numColumns={2}
@@ -36,10 +36,15 @@ export default class catogray extends Component {
                         // let image = require("../../Assets/images/store/beak.png")
                         // }
                         return (
-                            <View style={styles.store} key={item.key}>
+                            <TouchableOpacity style={styles.store} key={item.key}
+                                onPress={() => {
+                                    // console.log(this.props.navigation)
+                                    this.props.navigation.navigate("Store")
+                                }}
+                            >
                                 <Image source={item.image} />
                                 <Text style={{ color: colors.orange, padding: 10 }}>{item.title}</Text>
-                            </View>
+                            </TouchableOpacity>
                         )
                     }}
                 >

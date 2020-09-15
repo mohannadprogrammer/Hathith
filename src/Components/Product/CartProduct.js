@@ -9,7 +9,7 @@ export default product = props => {
     return (
         <View style={styles.container}>
             <View style={styles.card}>
-                <Image source={require("../../Assets/images/logo.jpg")} style={{ width: 50, height: 50, resizeMode: "contain" }} />
+                <Image source={require("../../Assets/images/logo.jpg")} style={{ width: 150, height: 50, resizeMode: "stretch" }} />
                 <Text style={{ color: colors.orange, padding: 3 }}>وجبه كنتاكي صغيرة</Text>
                 <Text style={{ color: colors.orange, padding: 3 }}>30 ر.س</Text>
                 <View style={styles.quntatyView}>
@@ -19,7 +19,7 @@ export default product = props => {
                         <Text style={{ color: colors.orange, top: -2, fontSize: 30 }}>-</Text>
                     </TouchableOpacity>
                     <View style={styles.countView}>
-                        <Text>0</Text>
+                        <Text>1</Text>
                     </View>
                     <TouchableOpacity
                         style={styles.operation}
@@ -35,24 +35,26 @@ export default product = props => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // width: 500,
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 10
+        padding: 5
     },
     card: {
         flex: 1,
+        width: "100%",
+        // height: 100,
         justifyContent: 'space-between',
         alignItems: 'center',
         borderColor: colors.orange,
         borderWidth: 2,
         borderRadius: 10,
         backgroundColor: "#FFF",
-        padding: 20,
+        padding: 10,
     },
 
     quntatyView: {
         flex: 1,
+
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
