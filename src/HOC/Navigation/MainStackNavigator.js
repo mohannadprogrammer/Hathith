@@ -55,6 +55,7 @@ function MainStackNavigator() {
         headerMode="none"
         animationTypeForReplace="pop"
       >
+        <Stack.Screen name="المتاجر" component={Screen.Mainpage} />
         <Stack.Screen name="Catogray" component={Screen.Catogary} />
         <Stack.Screen name="main" component={Main} />
         <Stack.Screen name='شاشه التسجيل' component={Screen.Login} />

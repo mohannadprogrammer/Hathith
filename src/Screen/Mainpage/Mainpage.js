@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, FlatList, ImageBackground, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, FlatList, ImageBackground, Dimensions, ScrollView } from 'react-native';
 import Header from '../../Components/Header/Header'
 import Carousel from '../../Components/Carousel/Carousel'
 import { dummyData } from '../../../data/data'
 import OfferView from '../../Components/OfferView/offerstoreView'
-import Icons from '../../Assets/Icons';
+import OverViewSale from '../../Components/OfferView/OverViewSale'
 
-export default class Mainpage extends React.Component {
+
+export default class Mainpage extends React.Component { 
 
 
   render() {
@@ -14,9 +15,11 @@ export default class Mainpage extends React.Component {
 
     const { navigation } = this.props
     return (
-
+      <ScrollView>
       <View style={styles.container}>
-        <Header name="المتاجر" />
+        
+        <Header name="المتاجر" 
+        />
         <View style={{ flex: 1 }}>
           <Carousel data={dummyData} />
 
@@ -25,28 +28,48 @@ export default class Mainpage extends React.Component {
 
         <View style={{ flex: 1 }}>
           <Text style={styles.cardtitle}>المتاجر الاقرب</Text>
-          
-          
-          <View style={{ flex: 1,  alignItems: 'center'}}>
-       
+
+
+          <View style={{
+            // flex: 1, 
+
+            height: 100,
+            alignItems: 'center'
+          }}>
+
+            <FlatList
+              data={[{ tile: "alsdf", key: "3 " }, { key: "1" }, { key: "2" }, { key: "4" }]}
+              renderItem={({ item, ...rest }) => <OfferView key={item.key} />}
+              // numColumns={2}
+              horizontal
+              style={{
+                // flex: 1,
+                height: 100
+
+                // backgroundColor: 'red',
+                // width:Dimensions.get('screen').width
+              }}
+              style={{ paddingRight: 44 }}
+            />
+
+
+          </View>
+          <View style={{ marginVertical: 22}}>
+          <Text style={styles.cardtitle2}> المتاجر الاكثر مبيعا</Text>
           <FlatList
-            data={[{ tile: "alsdf", key: "3 " }, { key: "1" }, { key: "2" },{ key: "4" }]}
-            renderItem={({ item, ...rest }) => <OfferView key={item.key} />}
-            numColumns={2}
-            // horizontal
-            contentContainerStyle={{
-              flix: 1,
-              // backgroundColor: 'red',
-              width:Dimensions.get('screen').width
-                        }}
-            style={{  paddingRight:44 }}
-          />
-          
-          
+              data={[{ tile: "alsdf", key: "3 " }, { key: "1" }, { key: "2" }, { key: "4" }]}
+              renderItem={({ item, ...rest }) => <OverViewSale key={item.key} />}
+               numColumns={2}
+              
+              style={{ marginVertical: 22 }}
+            />
           </View>
         </View>
-
+     
       </View>
+
+      </ScrollView>
+    
 
     );
   }
@@ -65,6 +88,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#CD853F',
     paddingRight: 10
+  },
+  cardtitle2: {
+    fontSize: 14,
+    color: '#CD853F',
+    paddingRight: 10
+
   },
   cardText: {
     fontSize: 30,

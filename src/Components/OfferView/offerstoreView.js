@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, ImageBackground, TouchableOpacity, Image, ScrollView } from 'react-native'
 import colors from '../../Assets/colors'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 export default class offerstoreView extends Component {
     render() {
@@ -15,11 +17,21 @@ export default class offerstoreView extends Component {
                 </View>
                 <View style={styles.info}>
                
-                    <Text style={styles.text}> 4.5</Text>
+                
+                    
+                   
+                    <Text style={styles.text}>
+                    
+                    <FontAwesome name="star" size={13} color="#FF8C00" style={{marginHorizontal: 6}} /> 
+                    <FontAwesome name="star" size={13} color="#FF8C00" style={{marginHorizontal: 6}} /> 
+                    <FontAwesome name="star" size={13} color="#FF8C00" style={{marginHorizontal: 6}} /> 
+                    <FontAwesome5 name="star-half-alt" size={13} color="#FF8C00" style={{marginHorizontal: 6}} /> 
+                    
+                     4.5</Text>
                 </View>
 
-                
-               
+
+
 
             </View>
         )
@@ -27,6 +39,7 @@ export default class offerstoreView extends Component {
 }
 const styles = StyleSheet.create({
     container: {
+        // flex:1,
         backgroundColor: "#FFFF",
         padding: 12,
         margin: 5,
@@ -46,9 +59,16 @@ const styles = StyleSheet.create({
     },
     text:
     {
-        paddingLeft:22,
+        paddingLeft: 22,
         color: colors.orange,
-        
+
+    },
+    imagerate: {
+        width: 15,
+        height: 15
+    },
+    info: {
+        flex: 1
     }
 
 })
