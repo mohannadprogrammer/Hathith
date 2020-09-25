@@ -67,6 +67,7 @@ export default class Mainpage extends React.Component {
           </View>
 
         </View>
+        
 
       </ScrollView>
 
