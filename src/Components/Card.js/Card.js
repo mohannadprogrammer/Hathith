@@ -1,4 +1,4 @@
-// mohanned this component we useing it around scrllview to stop warning 
+// mohanned this component we useing it around scrllview to stop warning +
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
