@@ -41,8 +41,8 @@ class Login extends Component {
 
         // Show spinner when call is made
         this.setState({ isLoading: true });
-  // this suppose to take from login to main page if login success but i dont have main pae api mohanned
-        BASEAXIOSURL.post('/user/main/', payload)
+  /
+        BASEAXIOSURL.post('/user/login/', payload)
             .then(onSuccess)
             .catch(onFailure);
     }
