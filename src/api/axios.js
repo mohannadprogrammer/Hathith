@@ -1,19 +1,18 @@
-import * as axios from "axios";
-const instance = axios.create();
-instance.defaults.timeout = 100000;
-instance.defaults.headers = {
-  ContentType: "application/json",
+
+import axios from 'axios';
+
+// Create axios client, pre-configured with baseURL
+let BASEAXIOSURL = axios.create({
+  baseURL: '192.168.40.41:5000',
+  timeout: 10000,
+});
+
+// Set JSON Web Token in Client to be included in all calls
+export const setClientToken = token => {
+  APIKit.interceptors.request.use(function(config) {
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  });
 };
-instance.interceptors.response.use(
-  response => {
-    console.log("Response from interceptors",response);  
-    return response;
-  },
-  error => {
-    if (!error.status) {
-        return Promise.reject({msg:'Network Error',done:false});
-    }
-    return Promise.reject(error.response);
-  }
-);
-export { instance as default };
+
+export default BASEAXIOSURL;

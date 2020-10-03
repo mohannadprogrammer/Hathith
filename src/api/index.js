@@ -1,6 +1,6 @@
 import axios from "./axios";
 
-const URL = "http://watanyapp.com/api";
+const URL = "http://192.186.48.40:5000/";
 
 // require("./product.js")
 export function getProductApi(langang) {
@@ -14,12 +14,12 @@ export function getProductApi(langang) {
 export function loginApi(phone) {
   console.log(`${URL}/`)
   return (
-    axios.post(`${URL}/login_phone`, { phone }))
+    axios.post(`${URL}/user/login`, { phone }))
 }
-export function LoginConfiramtion(phone, activation_key) {
+export function LoginConfiramtion(phone, OTP) {
   console.log(`${URL} /`)
   return (
-    axios.post(`${URL}/login_phone_code`, { phone, activation_key }))
+    axios.post(`${URL}/login_phone_code`, { phone, OTP }))
 }
 export function Registaration(user_name, phone) {
   // console.log(`${URL} /admin/login`)

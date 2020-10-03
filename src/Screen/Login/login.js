@@ -1,10 +1,54 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useRef, useEffect } from 'react';
 import PhoneInput from "react-native-phone-number-input";
 import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Button } from 'react-native'
 import LoginHOC from '../../HOC/LoginHOC/LoginHoc'
-class Login extends Component {
-    render() {
+import Spinner from 'react-native-loading-spinner-overlay';
 
+import BASEAXIOSURL, { setClientToken } from '../../api/axios';
+
+const initialState = {
+    phone: '',
+    OTP: '1234',
+    errors: {},
+    isAuthorized: false,
+    isLoading: false,
+};
+
+class Login extends Component {
+
+    state = initialState;
+
+    componentWillUnmount() { }
+
+    onPhoneChange = phone => {
+        this.setState({ phone });
+    };
+
+    onPressLogin() {
+        const { phone } = this.state;
+        const payload = { phone };
+        console.log(payload);
+
+        const onSuccess = ({ data }) => {
+            // Set JSON Web Token on success
+            setClientToken(data.token);
+            this.setState({ isLoading: false, isAuthorized: true });
+        };
+        const onFailure = error => {
+            console.log(error && error.response);
+            this.setState({ errors: error.response.data, isLoading: false });
+        };
+
+        // Show spinner when call is made
+        this.setState({ isLoading: true });
+  // this suppose to take from login to main page if login success but i dont have main pae api mohanned
+        BASEAXIOSURL.post('/user/main/', payload)
+            .then(onSuccess)
+            .catch(onFailure);
+    }
+    render() {
+      
+        const {isLoading} = this.state;
         // const [value, onChangeText] = React.useState('ادخل رقم الجوال');
         const { navigation } = this.props
         return (
@@ -19,6 +63,8 @@ class Login extends Component {
                                     width: "100%",
                                     borderColor: colors.light_gray,
                                     borderWidth: 1,
+                                    placeholder="أخل رقم الجوال",
+                                    
 
                                 }}
                             // onChangeText={text => onChangeText(text)}
@@ -34,7 +80,7 @@ class Login extends Component {
                         </View>
                         <View style={styles.submit} >
                             <TouchableOpacity
-                                onPress={() => navigation.navigate('Check')}
+                                 onPress={this.onPressLogin.bind(this)}
                                 style={styles.botton}
                             >
 
