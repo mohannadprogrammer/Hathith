@@ -41,7 +41,7 @@ class Login extends Component {
 
         // Show spinner when call is made
         this.setState({ isLoading: true });
-  /
+  
         BASEAXIOSURL.post('/user/login/', payload)
             .then(onSuccess)
             .catch(onFailure);
