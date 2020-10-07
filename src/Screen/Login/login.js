@@ -1,9 +1,9 @@
 import React, { Component, useState, useRef, useEffect } from 'react';
 import PhoneInput from "react-native-phone-number-input";
-import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Button } from 'react-native'
+import { StyleSheet, ActivityIndicator, View, Text, TouchableOpacity, Image, TextInput, Button } from 'react-native'
 import LoginHOC from '../../HOC/LoginHOC/LoginHoc'
-import Spinner from 'react-native-loading-spinner-overlay';
-
+import AsyncStorage from '@react-native-community/async-storage';
+import CountryPicker from 'react-native-country-picker-modal';
 import BASEAXIOSURL, { setClientToken } from '../../api/axios';
 
 const initialState = {
@@ -12,7 +12,11 @@ const initialState = {
     errors: {},
     isAuthorized: false,
     isLoading: false,
+    disable: true,
 };
+const MAX_LENGTH_CODE = 6;
+const MAX_LENGTH_NUMBER = 10;
+const countryPickerCustomStyles = {};
 
 class Login extends Component {
 
@@ -41,16 +45,53 @@ class Login extends Component {
 
         // Show spinner when call is made
         this.setState({ isLoading: true });
-  
+
         BASEAXIOSURL.post('/user/login/', payload)
             .then(onSuccess)
             .catch(onFailure);
     }
+
+    getNonFieldErrorMessage() {
+        let message = null;
+        const { errors } = this.state;
+        if (errors.non_field_errors) {
+            message = (
+                <View style={styles.errorMessageContainerStyle}>
+                    {errors.non_field_errors.map(item => (
+                        <Text style={styles.errorMessageTextStyle} key={item}>
+                            {item}
+                        </Text>
+                    ))}
+                </View>
+            );
+        }
+        return message;
+    }
+
+    getErrorMessageByField(field) {
+        // Checks for error message in specified field Shows error message from backend
+        let message = null;
+        if (this.state.errors[field]) {
+            message = (
+                <View style={styles.errorMessageContainerStyle}>
+                    {this.state.errors[field].map(item => (
+                        <Text style={styles.errorMessageTextStyle} key={item}>
+                            {item}
+                        </Text>
+                    ))}
+                </View>
+            );
+        }
+        return message;
+    }
+
     render() {
-      
-        const {isLoading} = this.state;
+
+        const { isLoading } = this.state;
         // const [value, onChangeText] = React.useState('ادخل رقم الجوال');
         const { navigation } = this.props
+
+
         return (
             <LoginHOC
                 step={1}
@@ -63,11 +104,18 @@ class Login extends Component {
                                     width: "100%",
                                     borderColor: colors.light_gray,
                                     borderWidth: 1,
-                                    placeholder="أخل رقم الجوال",
-                                    
+
 
                                 }}
-                            // onChangeText={text => onChangeText(text)}
+                                value={this.state.username}
+                                placeholder="أخل رقم الجوال"
+                                keyboardType="numeric"
+                                onChangeText={text => {
+                                    this.setState({
+                                        disable: false
+                                    })
+                                    onChangeText(text)
+                                }}
                             // value={"value"}
 
                             />
@@ -80,8 +128,10 @@ class Login extends Component {
                         </View>
                         <View style={styles.submit} >
                             <TouchableOpacity
-                                 onPress={this.onPressLogin.bind(this)}
-                                style={styles.botton}
+                                onPress={this.onPressLogin.bind(this)}
+                                style={[styles.botton, this.state.disable ? { backgroundColor: colors.light_orange, opacity: 0.7 } : null]}
+                                disabled={this.state.disable}
+
                             >
 
                                 <Text style={{ color: "#FFFF", fontSize: 24 }}>تأكيد</Text>

@@ -2,7 +2,7 @@ import React from 'react'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import promiseMiddleWare from 'redux-promise'
-import rootReducer from './src/reducer'
+import rootReducer from './src/reducers/'
 
 const createStoreWithMidlleware =applyMiddleware(promiseMiddleWare)(createStore);
 

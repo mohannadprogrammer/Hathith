@@ -3,7 +3,7 @@ import Verification from './Verification/Verification'
 import Orders from './Orders/Orders'
 import Notification from './Notification/notification'
 import Personal from './Personal/personal'
-import Profile from './Profile/profile'
+import Profile from './profile/profile'
 import Catogary from './Catogray/catogray'
 import Store from "./Store/Store"
 import Bill from './Bill/bill'
