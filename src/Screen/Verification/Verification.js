@@ -1,178 +1,107 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Button } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Alert, TextInput, Button } from 'react-native'
 import CodeInput from 'react-native-confirmation-code-input'
 import LoginHOC from '../../HOC/LoginHOC/LoginHoc'
 class Verification extends Component {
+  state = {
 
+  }
   constructor(props) {
     super(props);
-    this.state = {
-        enterCode: false,
-        OTP: '',
-        phone: '',
-        isLoading: false,
-    };
-
-    this._textInput = React.createRef();
-}
-
- API = {
- 
-  headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-  },
-};
-
-_getCode = () => {
-  // Todo : check if valid number
-
-  this.setState({isLoading: true});
-
-  setTimeout(async () => {
-      try {
-
-          let phone = this._textInput._lastNativeText;
-          let sent = false;
-
-          await fetch('192.168.40.41:5000/user/login', {
-              method: 'POST',
-              headers: API.headers,
-              body: JSON.stringify({
-                  phone: phone,
-                 
-              }),
-          }).then(
-              (response) => {
-                  if (response.status === 200) {
-                      return response.json();
-                  } else if (response.status === 404) {
-                      throw Error('Phone number doesn\'t exists');
-                  } else {
-                      throw Error('Can\'t reach the server.');
-                  }
-              },
-          ).then((responseJson) => {
-              if (responseJson && responseJson.sent) {
-                  sent = responseJson.sent;
-              } else {
-                  throw Error('Can\'t send code.');
-              }
-          }).catch(error => {
-              console.log('Catch error : ', error);
-              throw error;
-          });
 
 
-          this.setState({
-              spinner: false,
-              enterCode: true,
-              verification: sent,
-              phone: phone,
-          });
-
-          this._textInput.setNativeProps({text: ''});
-
-          setTimeout(() => {
-              Alert.alert(Strings.Sent, Strings.CodeSent, [{
-                  text: 'OK',
-                  onPress: () => this._textInput.focus(),
-              }]);
-          }, 100);
-
-      } catch (error) {
-          this.setState({spinner: false});
-          setTimeout(() => {
-              Alert.alert('Oops!', error.message);
-          }, 100);
-      }
-
-  }, 100);
-
-};
-
-_verifyCode = () => {
-
-  this.setState({isLoading: true});
-
-  setTimeout(async () => {
-
-      try {
-
-         
-          let phone = this.state.phoneNumber;
-          let code = this._textInput._lastNativeText;
-
-          await fetch('192.168.40.41:5000/user/login', {
-              method: 'POST',
-              headers: API.headers,
-              body: JSON.stringify({
-                  phone: phone,
-                  code: code,
-              }),
-          }).then(
-              (response) => {
-                  if (response.status === 200) {
-                      return response.json();
-                  } else if (response.status === 404) {
-                      throw Error('Wrong code');
-                  } else {
-                      throw Error('Can\'t reach the server.');
-                  }
-              },
-          ).then((responseJson) => {
-              if (responseJson && responseJson.verified) {
-                  console.log('Phone verified.');
-              } else {
-                  throw Error('Can\'t check the code, try to resend it again.');
-              }
-          }).catch(error => {
-              console.log('Catch error :', error);
-              throw error;
-          });
-
-          this._textInput.blur();
-          this.setState({isLoading: false});
-          setTimeout(() => {
-              Alert.alert(Strings.Success, Strings.SuccessfullyVerifiedPhoneNumber);
-              this.props.navigation.navigate('main');
-
-          }, 100);
-
-      } catch (error) {
-          this.setState({spinner: false});
-          setTimeout(() => {
-              Alert.alert('Oops!', error.message);
-          }, 100);
-      }
-
-  }, 100);
-
-};
-
-_onChangeText = (val) => {
-  if (!this.state.enterCode) {
-      return;
   }
-  if (val.length === MAX_LENGTH_CODE) {
-      this._verifyCode();
+
+  async sendData() {
+    console.log("slkdlf")
+    await fetch("http://209.97.181.175:5000" + "/user/login",
+      {
+        method: 'POST',
+        headers:
+        {
+          'Content-Type': 'application/json'
+
+        },
+
+        body: JSON.stringify(this.state)
+      }).then((response) => response.json()).then((responseJson) => {
+        let { code, message } = responseJson;
+        console.log(responseJson)
+        if (code) {
+          // alert("تمت العملية بي نجاح");
+          Alert.alert(
+            'فشل العملية',
+            'لم يتطابق رقم التاكيد',
+            [
+
+              {
+                text: 'الغاء',
+                onPress: () => this.props.navigation.navigate("login"),
+                style: 'cancel'
+              },
+              {
+                text: 'محاةله مرة اخرى',
+                // onPress: () => console.log('OK Pressed')
+              }
+            ],
+            { cancelable: false }
+          );
+
+        } else {
+          // alert("لم تطابق البيانات ");
+          Alert.alert(
+            'فشل العملية',
+            'لم يتطابق رقم التاكيد',
+            [
+
+              {
+                text: 'الغاء',
+                onPress: () => this.props.navigation.navigate("login"),
+                style: 'cancel'
+              },
+              {
+                text: 'محاةله مرة اخرى',
+                style: {
+                  color: colors.orange
+                }
+                // onPress: () => console.log('OK Pressed')
+              }
+            ],
+            { cancelable: false }
+          );
+        }
+        // switch (code) {
+        //   case 0:
+
+        //     alert(strings("verfiy.response.successful"))
+        //     break;
+        //   case -5:
+        //     alert(strings("verfiy.response.userNotFound"))
+        //     break;
+        //   case -2:
+        //     alert(strings("verfiy.response.userfound"))
+        //     break;
+
+        // }
+
+      }).catch((error) => {
+        // alert(strings("verfiy.response.unauthorized"))
+        console.log(error, ">>>>>>>>>>>>>>>>>>>")
+      });
+
   }
-};
+  _onFulfill(code) {
+    // console.log(code);
+    this.setState({
 
-_tryAgain = () => {
-  this._textInput.setNativeProps({text: ''});
-  this._textInput.focus();
-  this.setState({enterCode: false});
-};
-
-_getSubmitAction = () => {
-  this.state.enterCode ? this._verifyCode() : this._getCode();
-};
-
+      OTP: code,
+      phone: this.props.route.params.phone,
+    })
+  }
   render() {
 
-    // const [value, onChangeText] = React.useState('ادخل رقم الجوال');
     const { navigation } = this.props
+    console.log(this.props.route.params.phone);
     return (
       <LoginHOC
         step={2}
@@ -200,21 +129,33 @@ _getSubmitAction = () => {
                   inactiveColor={colors.gray}
                   codeLength={4}
                   inputPosition='center'
-                  onFulfill={(code) => { alert("successfull") }}
-                  onSubmitEditing={this._getSubmitAction}/>
+                  onFulfill={(code) => {
+                    // alert(code)
+                    this._onFulfill(code)
+                  }}
+                // onSubmitEditing={
+                // this._getSubmitAction
+                // }
                 />
+
               </View>
-              <Text style={{ color: colors.orange, textAlign: "center", alignSelf: "center" }}>يمكنك ارسال بعد  1:59</Text>
+              <Text style={{ color: colors.orange, textAlign: "center", alignSelf: "center" }}>يمكنك ارسال بعد   1:59 تحلقق الرسائل في رقمك {this.props.route.params.phone}</Text>
 
             </View>
             <View style={styles.submit} >
               <TouchableOpacity
-                onPress={() => navigation.navigate('Profile')}
+                onPress={() => {
+                  console.log(this.state)
+                  this.sendData();
+                  // navigation.navigate('Profile')
+                }}
                 style={styles.botton}
               >
 
                 <Text style={{ color: "#FFFF", fontSize: 24 }}
-                onPress={this._getSubmitAction} 
+                // onPress={
+                // this._getSubmitAction
+                // }
                 >تأكيد</Text>
               </TouchableOpacity>
 

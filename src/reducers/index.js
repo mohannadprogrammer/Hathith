@@ -1,10 +1,9 @@
-import { combineReducers } from "redux";
-// import Reducer_placeorder from "./Reducer_placeorder";
+import { combineReducers } from 'redux'
 
+import login from './Login'
 
-const rootReducer  = combineReducers({
-  
-
+const rootReducer = combineReducers({
+    login,
 })
 
 export default rootReducer;

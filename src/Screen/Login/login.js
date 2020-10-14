@@ -6,67 +6,19 @@ import AsyncStorage from '@react-native-community/async-storage';
 import CountryPicker from 'react-native-country-picker-modal';
 import BASEAXIOSURL, { setClientToken } from '../../api/axios';
 
-const initialState = {
-    phone: '',
-    OTP: '1234',
-    errors: {},
-    isAuthorized: false,
-    isLoading: false,
-    disable: true,
-};
-const MAX_LENGTH_CODE = 6;
-const MAX_LENGTH_NUMBER = 10;
-const countryPickerCustomStyles = {};
 
 class Login extends Component {
 
-    state = initialState;
+    state = {
+        phone: "",
+        disable: true
+    };
 
     componentWillUnmount() { }
 
     onPhoneChange = phone => {
         this.setState({ phone });
     };
-
-    onPressLogin() {
-        const { phone } = this.state;
-        const payload = { phone };
-        console.log(payload);
-
-        const onSuccess = ({ data }) => {
-            // Set JSON Web Token on success
-            setClientToken(data.token);
-            this.setState({ isLoading: false, isAuthorized: true });
-        };
-        const onFailure = error => {
-            console.log(error && error.response);
-            this.setState({ errors: error.response.data, isLoading: false });
-        };
-
-        // Show spinner when call is made
-        this.setState({ isLoading: true });
-
-        BASEAXIOSURL.post('/user/login/', payload)
-            .then(onSuccess)
-            .catch(onFailure);
-    }
-
-    getNonFieldErrorMessage() {
-        let message = null;
-        const { errors } = this.state;
-        if (errors.non_field_errors) {
-            message = (
-                <View style={styles.errorMessageContainerStyle}>
-                    {errors.non_field_errors.map(item => (
-                        <Text style={styles.errorMessageTextStyle} key={item}>
-                            {item}
-                        </Text>
-                    ))}
-                </View>
-            );
-        }
-        return message;
-    }
 
     getErrorMessageByField(field) {
         // Checks for error message in specified field Shows error message from backend
@@ -87,10 +39,7 @@ class Login extends Component {
 
     render() {
 
-        const { isLoading } = this.state;
-        // const [value, onChangeText] = React.useState('ادخل رقم الجوال');
-        const { navigation } = this.props
-
+        const { navigation } = this.props.navigation
 
         return (
             <LoginHOC
@@ -112,23 +61,26 @@ class Login extends Component {
                                 keyboardType="numeric"
                                 onChangeText={text => {
                                     this.setState({
+                                        phone: text,
                                         disable: false
                                     })
-                                    onChangeText(text)
+
                                 }}
-                            // value={"value"}
 
                             />
                             <TouchableOpacity
                                 style={styles.buttonContainer}
-                                onPress={() => navigation.navigate('Check')}>
+                                onPress={() => this.props.navigation.navigate("main")}>
                                 <Text style={styles.title}>تخطي</Text>
                             </TouchableOpacity>
 
                         </View>
                         <View style={styles.submit} >
                             <TouchableOpacity
-                                onPress={this.onPressLogin.bind(this)}
+                                onPress={() => {
+                                    // alert(this.state.ph);
+                                    this.props.navigation.navigate("Check", { phone: this.state.phone });
+                                }}
                                 style={[styles.botton, this.state.disable ? { backgroundColor: colors.light_orange, opacity: 0.7 } : null]}
                                 disabled={this.state.disable}
 
@@ -145,13 +97,9 @@ class Login extends Component {
                                 <Text style={{ textAlign: "center", color: colors.orange, fontSize: 12 }}>استخدامك لهاذا التطبيق يعني موافقتك على سياسة و شروط الاستخدام</Text>
                             </View>
                         </View>
-                    </View>
+                    </ View>
 
                 )}
-
-            // submit={() => (
-
-            // )}
             >
 
             </LoginHOC>
