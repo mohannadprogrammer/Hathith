@@ -3,11 +3,104 @@ import { Text, View, TouchableOpacity, Image, StyleSheet, TextInput } from 'reac
 import Header from '../../Components/Header/Header'
 import colors from '../../Assets/colors'
 
+import AsyncStorage from '@react-native-community/async-storage'
 import I18n from 'react-native-i18n'
 const io = I18n.currentLocale()
 
 export default class Profile extends Component {
+    state = {
+        user: {
 
+        },
+        token: "",
+        order: 4
+    }
+    componentDidMount() {
+        this.getUserData()
+    }
+    async getUserData() {
+        try {
+            const jsonValue = await AsyncStorage.getItem('user')
+            const token = await AsyncStorage.getItem('token')
+            console.log("sdfsdfsf" + JSON.parse(jsonValue).lastname);
+            this.setState({
+                user: JSON.parse(jsonValue),
+                token
+            })
+            return JSON.parse(jsonValue);
+        } catch (e) {
+            // error reading value
+            console.log(e)
+            return null
+
+        }
+    }
+    async sendData() {
+        console.log("slkdlf")
+        await fetch("http://209.97.181.175:5000" + "/user/update",
+            {
+                method: 'POST',
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'auth': this.state.token
+
+                },
+
+                body: JSON.stringify(this.state)
+            }).then((response) => response.json()).then(async (responseJson) => {
+                let { code, message } = responseJson;
+                console.log(responseJson)
+                if (code || code == 1) {
+                    // alert("تمت العملية بي نجاح");
+                    // await this.saveTokenAndUserData(responseJson.userData.token, responseJson.userData);
+                    Alert.alert(
+                        'نجحت العملية',
+                        'تم يتطابق رقم التاكيد',
+                        [
+
+                            {
+                                text: 'الغاء',
+                                onPress: () => this.props.navigation.navigate("login"),
+                                style: 'cancel'
+                            },
+                            {
+                                text: "فتح التطبيق",
+                                onPress: () => this.props.navigation.navigate("main")
+                            }
+                        ],
+                        { cancelable: false }
+                    );
+
+                } else {
+                    // alert("لم تطابق البيانات ");
+                    Alert.alert(
+                        'فشل العملية',
+                        'لم يتطابق رقم التاكيد',
+                        [
+
+                            {
+                                text: 'الغاء',
+                                onPress: () => this.props.navigation.navigate("login"),
+                                style: 'cancel'
+                            },
+                            {
+                                text: 'محاةله مرة اخرى',
+                                style: {
+                                    color: colors.main
+                                }
+                                // onPress: () => console.log('OK Pressed')
+                            }
+                        ],
+                        { cancelable: false }
+                    );
+                }
+
+            }).catch((error) => {
+                console.log(error, ">>>>>>>>>>>>>>>>>>>")
+            });
+
+    }
     render() {
         return (
             <View style={{ flex: 1 }}>
@@ -38,6 +131,7 @@ export default class Profile extends Component {
                             placeholder=" الاسم الاول"
                             placeholderTextColor={colors.main}
                             style={{ height: 40, borderColor: 'gray', width: '100%' }}
+                            value={this.state.user.firstname}
 
                         />
                     </View>
@@ -47,12 +141,16 @@ export default class Profile extends Component {
                             placeholder=" الاسم الثاني "
                             placeholderTextColor={colors.main}
                             style={{ height: 40, borderColor: 'gray', width: '100%' }}
+                            value={this.state.user.lastname}
 
                         />
                     </View>
                     <View style={styles.submit} >
                         <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('main')}
+                            onPress={() => {
+                                this.sendData();
+                                // this.props.navigation.navigate('main')
+                            }}
                             style={styles.botton}
                         >
 

@@ -2,10 +2,35 @@ import React, { Component } from 'react'
 import { Text, View, ImageBackground, Image, StyleSheet } from 'react-native'
 import Header from '../../Components/Header/Header'
 import colors from '../../Assets/colors'
+import AsyncStorage from '@react-native-community/async-storage'
 
 import I18n from 'react-native-i18n'
 const io = I18n.currentLocale()
 export default class personal extends Component {
+    state = {
+        user: {
+
+        },
+        order: 4
+    }
+    componentDidMount() {
+        this.getUserData()
+    }
+    async getUserData() {
+        try {
+            const jsonValue = await AsyncStorage.getItem('user')
+            console.log("sdfsdfsf" + JSON.parse(jsonValue).lastname);
+            this.setState({
+                user: JSON.parse(jsonValue)
+            })
+            return JSON.parse(jsonValue);
+        } catch (e) {
+            // error reading value
+            console.log(e)
+            return null
+
+        }
+    }
     render() {
         return (
             <View style={{ flex: 1 }}>
@@ -23,15 +48,15 @@ export default class personal extends Component {
                     </View>
 
                     <View style={styles.info}>
-                        <Text style={{ color: colors.main }}>محمد </Text>
+                        <Text style={{ color: colors.main }}>{this.state.user.firstname} </Text>
                     </View>
 
                     <View style={styles.info}>
-                        <Text style={{ color: colors.main }}>محمد </Text>
+                        <Text style={{ color: colors.main }}>{this.state.user.lastname} </Text>
                     </View>
                     <View style={styles.info}>
                         <Text style={{ color: colors.main }}>عدد الطلبات </Text>
-                        <Text style={{ color: colors.main }}>5 </Text>
+                        <Text style={{ color: colors.main }}>{this.state.order} </Text>
                     </View>
                 </View>
             </View >

@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator();
 function Main() {
   return (
     <Tab.Navigator
-      initialRouteName="المتاجر"
+      initialRouteName="صفحتي"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
 
@@ -58,6 +58,8 @@ function MainStackNavigator() {
       headerMode="none"
       animationTypeForReplace="pop"
     >
+      <Stack.Screen name="Profile" component={Screen.Profile} />
+      <Stack.Screen name="main" component={Main} />
       <Stack.Screen name="login" component={Screen.Login} />
 
       <Stack.Screen
@@ -70,8 +72,7 @@ function MainStackNavigator() {
       <Stack.Screen name="Catogray" component={Screen.Catogary} />
       <Stack.Screen name="Store" component={Screen.Store} />
       <Stack.Screen name="Cart" component={Screen.Cart} />
-      <Stack.Screen name="Profile" component={Screen.Profile} />
-      <Stack.Screen name="main" component={Main} />
+      {/* <Stack.Screen name="Profile" component={Screen.Profile} /> */}
 
     </Stack.Navigator>
 
