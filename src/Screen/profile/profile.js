@@ -85,7 +85,7 @@ export default class Profile extends Component {
 
                             {
                                 text: 'الغاء',
-                                onPress: () => this.props.navigation.navigate("login"),
+                                // onPress: () => this.props.navigation.navigate("login"),
                                 style: 'cancel'
                             },
                             {
