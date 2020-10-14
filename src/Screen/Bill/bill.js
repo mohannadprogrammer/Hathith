@@ -12,31 +12,31 @@ export default class bill extends Component {
                 />
                 <View style={styles.bill}>
                     <View style={styles.header}>
-                        <Text style={{ textAlign: "center", color: colors.orange, fontWeight: "bold", fontSize: 18 }}>الفاتورة</Text>
+                        <Text style={{ textAlign: "center", color: colors.main, fontWeight: "bold", fontSize: 18 }}>الفاتورة</Text>
                         <View style={styles.line}></View>
                     </View>
-                    <Text style={{ color: colors.orange, }}>المشتريات</Text>
+                    <Text style={{ color: colors.main, }}>المشتريات</Text>
                     <View style={styles.item}>
 
-                        <Text style={{ color: colors.orange, }}> وجبة كنتاكي صغيرة</Text>
-                        <Text style={{ color: colors.orange, }}> 30 ريال</Text>
+                        <Text style={{ color: colors.main, }}> وجبة كنتاكي صغيرة</Text>
+                        <Text style={{ color: colors.main, }}> 30 ريال</Text>
                     </View>
 
                     <View style={styles.item}>
 
-                        <Text style={{ color: colors.orange, }}>كرسبي</Text>
-                        <Text style={{ color: colors.orange, }}> 18 ريال</Text>
+                        <Text style={{ color: colors.main, }}>كرسبي</Text>
+                        <Text style={{ color: colors.main, }}> 18 ريال</Text>
                     </View>
 
                     <View style={styles.item}>
 
-                        <Text style={{ color: colors.orange, }}>زنجر سبريم</Text>
-                        <Text style={{ color: colors.orange, }}> 12 ريال</Text>
+                        <Text style={{ color: colors.main, }}>زنجر سبريم</Text>
+                        <Text style={{ color: colors.main, }}> 12 ريال</Text>
                     </View>
 
                     <View style={styles.tras}>
-                        <Text style={{ color: colors.orange, fontSize: 20 }}>التوصيل</Text>
-                        <Text style={{ color: colors.orange, }}>18 ريال</Text>
+                        <Text style={{ color: colors.main, fontSize: 20 }}>التوصيل</Text>
+                        <Text style={{ color: colors.main, }}>18 ريال</Text>
                     </View>
 
                     <View style={styles.tras}>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     bill: {
         // flex: 1,
         backgroundColor: "#FFF",
-        borderColor: colors.orange,
+        borderColor: colors.main,
         borderWidth: 2,
         borderRadius: 10,
         padding: 10,

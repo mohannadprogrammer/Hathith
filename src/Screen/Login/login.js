@@ -81,7 +81,7 @@ class Login extends Component {
                                     // alert(this.state.ph);
                                     this.props.navigation.navigate("Check", { phone: this.state.phone });
                                 }}
-                                style={[styles.botton, this.state.disable ? { backgroundColor: colors.light_orange, opacity: 0.7 } : null]}
+                                style={[styles.botton, this.state.disable ? { backgroundColor: colors.main, opacity: 0.7 } : null]}
                                 disabled={this.state.disable}
 
                             >
@@ -94,7 +94,7 @@ class Login extends Component {
 
                             </View>
                             <View>
-                                <Text style={{ textAlign: "center", color: colors.orange, fontSize: 12 }}>استخدامك لهاذا التطبيق يعني موافقتك على سياسة و شروط الاستخدام</Text>
+                                <Text style={{ textAlign: "center", color: colors.main, fontSize: 12 }}>استخدامك لهاذا التطبيق يعني موافقتك على سياسة و شروط الاستخدام</Text>
                             </View>
                         </View>
                     </ View>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         paddingBottom: 16,
         paddingTop: 16,
         fontSize: 16,
-        color: colors.orange
+        color: colors.main
 
     },
     submit: {
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: colors.orange,
+        backgroundColor: colors.main,
         padding: 20,
         borderRadius: 10
     },

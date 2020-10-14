@@ -8,12 +8,12 @@ export default class Header extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.headerName}>{this.props.name} </Text>
-                <View style={{paddingLeft:200}}>
+                <View style={{ paddingLeft: 200 }}>
                     <TouchableOpacity>
-                    <FontAwesome5 name="search" size={13} color="#0000FF" style={{marginHorizontal: 6}} /> 
+                        <FontAwesome5 name="search" size={13} color="#0000FF" style={{ marginHorizontal: 6 }} />
 
                     </TouchableOpacity>
-               
+
                 </View>
             </View>
         )
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFFF"
     },
     headerName: {
-        color: colors.orange,
+        color: colors.main,
         fontSize: 20,
         fontWeight: "bold"
     }

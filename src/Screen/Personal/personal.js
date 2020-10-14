@@ -23,15 +23,15 @@ export default class personal extends Component {
                     </View>
 
                     <View style={styles.info}>
-                        <Text style={{ color: colors.orange }}>محمد </Text>
+                        <Text style={{ color: colors.main }}>محمد </Text>
                     </View>
 
                     <View style={styles.info}>
-                        <Text style={{ color: colors.orange }}>محمد </Text>
+                        <Text style={{ color: colors.main }}>محمد </Text>
                     </View>
                     <View style={styles.info}>
-                        <Text style={{ color: colors.orange }}>عدد الطلبات </Text>
-                        <Text style={{ color: colors.orange }}>5 </Text>
+                        <Text style={{ color: colors.main }}>عدد الطلبات </Text>
+                        <Text style={{ color: colors.main }}>5 </Text>
                     </View>
                 </View>
             </View >

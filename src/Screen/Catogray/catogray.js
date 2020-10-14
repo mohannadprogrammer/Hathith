@@ -43,7 +43,7 @@ export default class catogray extends Component {
                                 }}
                             >
                                 <Image source={item.image} />
-                                <Text style={{ color: colors.orange, padding: 10 }}>{item.title}</Text>
+                                <Text style={{ color: colors.main, padding: 10 }}>{item.title}</Text>
                             </TouchableOpacity>
                         )
                     }}

@@ -73,7 +73,7 @@ export default class SelectLocation extends Component {
                     <TextInput style={{
                         borderWidth: 2,
                         borderRadius: 20,
-                        borderColor: colors.orange
+                        borderColor: colors.main
                     }}
                         placeholder="رقم|البناية|المعالم الواضحة"
 
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         // flexDirection: "row",
         // padding: 10,
         marginTop: 25,
-        backgroundColor: colors.orange,
+        backgroundColor: colors.main,
         borderRadius: 14,
         // opacity: 0.7
     },

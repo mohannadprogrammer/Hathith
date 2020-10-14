@@ -17,7 +17,7 @@ export default class Profile extends Component {
                         textAlign: "center",
                         padding: 15,
                         fontSize: 24,
-                        color: colors.orange
+                        color: colors.main
                     }}
                 >ادخل بياناتك</Text>
 
@@ -36,7 +36,7 @@ export default class Profile extends Component {
                     <View style={styles.info}>
                         <TextInput
                             placeholder=" الاسم الاول"
-                            placeholderTextColor={colors.orange}
+                            placeholderTextColor={colors.main}
                             style={{ height: 40, borderColor: 'gray', width: '100%' }}
 
                         />
@@ -45,7 +45,7 @@ export default class Profile extends Component {
                     <View style={styles.info}>
                         <TextInput
                             placeholder=" الاسم الثاني "
-                            placeholderTextColor={colors.orange}
+                            placeholderTextColor={colors.main}
                             style={{ height: 40, borderColor: 'gray', width: '100%' }}
 
                         />
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: colors.orange,
+        backgroundColor: colors.main,
         padding: 20,
         borderRadius: 10
     },

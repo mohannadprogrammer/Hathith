@@ -16,7 +16,7 @@ export default class cartHeader extends Component {
                         // alert("akjsdkfkajsd")
                     }}
                 >
-                    {Icon.Back(colors.orange)}
+                    {Icon.Back(colors.main)}
 
                 </TouchableOpacity>
                 <Text style={styles.headerName} >{this.props.name} </Text>
@@ -30,7 +30,7 @@ export default class cartHeader extends Component {
                         }}
 
                     >
-                        {Icon.Cart(colors.orange)}
+                        {Icon.Cart(colors.main)}
 
                     </TouchableOpacity> : null
                 }
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         padding: 15
     },
     headerName: {
-        color: colors.orange,
+        color: colors.main,
         fontSize: 20,
         textAlign: "center",
         // width: '100%',

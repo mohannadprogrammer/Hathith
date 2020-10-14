@@ -10,13 +10,13 @@ export default product = props => {
         <View style={styles.container}>
             <View style={styles.card}>
                 <Image source={require("../../Assets/images/logo.png")} style={{ width: 150, height: 50, resizeMode: "stretch" }} />
-                <Text style={{ color: colors.orange, padding: 3 }}>وجبه كنتاكي صغيرة</Text>
-                <Text style={{ color: colors.orange, padding: 3 }}>30 ر.س</Text>
+                <Text style={{ color: colors.main, padding: 3 }}>وجبه كنتاكي صغيرة</Text>
+                <Text style={{ color: colors.main, padding: 3 }}>30 ر.س</Text>
                 <View style={styles.quntatyView}>
                     <TouchableOpacity style={styles.operation}
                         onPress={() => { props.decrease() }}
                     >
-                        <Text style={{ color: colors.orange, top: -2, fontSize: 30 }}>-</Text>
+                        <Text style={{ color: colors.main, top: -2, fontSize: 30 }}>-</Text>
                     </TouchableOpacity>
                     <View style={styles.countView}>
                         <Text>1</Text>
@@ -25,7 +25,7 @@ export default product = props => {
                         style={styles.operation}
                     // onPress={increaseCount.bind(this)}
                     >
-                        <Text style={{ color: colors.orange, top: -1, fontSize: 20 }}>+</Text>
+                        <Text style={{ color: colors.main, top: -1, fontSize: 20 }}>+</Text>
                     </TouchableOpacity>
                 </View>
             </View >
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         // height: 100,
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderColor: colors.orange,
+        borderColor: colors.main,
         borderWidth: 2,
         borderRadius: 10,
         backgroundColor: "#FFF",
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     countView: {
         alignItems: 'center',
-        borderColor: colors.orange,
+        borderColor: colors.main,
         borderWidth: 1,
         color: 'black',
         width: 30,
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 20,
         borderWidth: 1,
-        borderColor: colors.orange,
+        borderColor: colors.main,
         width: 20,
         height: 20,
     },

@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     text:
     {
-        color: colors.orange,
+        color: colors.main,
     },
     info: {
         flexDirection: io === "en-US" ? "row-reverse" : "row",
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: colors.orange,
+        backgroundColor: colors.main,
         padding: 5,
         margin: 5,
         borderRadius: 10

@@ -79,7 +79,7 @@ export default class Mainpage extends React.Component {
           bottom: 0,
           alignSelf: "center",
           alignItems: "center",
-          backgroundColor: colors.orange,
+          backgroundColor: colors.main,
           justifyContent: "center",
           borderTopRightRadius: 20,
           borderTopLeftRadius: 20

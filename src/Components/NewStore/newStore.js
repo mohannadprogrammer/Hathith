@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     },
     text:
     {
-        color: colors.orange,
+        color: colors.main,
     },
     info: {
         flexDirection: io === "en-US" ? "row-reverse" : "row",

@@ -16,17 +16,17 @@ export default class offerstoreView extends Component {
                     <Text style={styles.text}> كنج بيرقر </Text>
                 </View>
                 <View style={styles.info}>
-               
-                
-                    
-                   
+
+
+
+
                     <Text style={styles.text}>
-                    
-                    <FontAwesome name="star" size={13} color="#FF8C00" style={{marginHorizontal: 6}} /> 
-                    <FontAwesome name="star" size={13} color="#FF8C00" style={{marginHorizontal: 6}} /> 
-                    <FontAwesome name="star" size={13} color="#FF8C00" style={{marginHorizontal: 6}} /> 
-                    <FontAwesome5 name="star-half-alt" size={13} color="#FF8C00" style={{marginHorizontal: 6}} /> 
-                    
+
+                        <FontAwesome name="star" size={13} color="#FF8C00" style={{ marginHorizontal: 6 }} />
+                        <FontAwesome name="star" size={13} color="#FF8C00" style={{ marginHorizontal: 6 }} />
+                        <FontAwesome name="star" size={13} color="#FF8C00" style={{ marginHorizontal: 6 }} />
+                        <FontAwesome5 name="star-half-alt" size={13} color="#FF8C00" style={{ marginHorizontal: 6 }} />
+
                      4.5</Text>
                 </View>
 
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     text:
     {
         paddingLeft: 22,
-        color: colors.orange,
+        color: colors.main,
 
     },
     imagerate: {

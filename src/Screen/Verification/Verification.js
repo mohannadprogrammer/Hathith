@@ -62,7 +62,7 @@ class Verification extends Component {
               {
                 text: 'محاةله مرة اخرى',
                 style: {
-                  color: colors.orange
+                  color: colors.main
                 }
                 // onPress: () => console.log('OK Pressed')
               }
@@ -125,7 +125,7 @@ class Verification extends Component {
                   className={'border-b'}
                   space={20}
                   size={30}
-                  activeColor={colors.orange}
+                  activeColor={colors.main}
                   inactiveColor={colors.gray}
                   codeLength={4}
                   inputPosition='center'
@@ -139,7 +139,7 @@ class Verification extends Component {
                 />
 
               </View>
-              <Text style={{ color: colors.orange, textAlign: "center", alignSelf: "center" }}>يمكنك ارسال بعد   1:59 تحلقق الرسائل في رقمك {this.props.route.params.phone}</Text>
+              <Text style={{ color: colors.main, textAlign: "center", alignSelf: "center" }}>يمكنك ارسال بعد   1:59 تحلقق الرسائل في رقمك {this.props.route.params.phone}</Text>
 
             </View>
             <View style={styles.submit} >
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     paddingTop: 16,
     fontSize: 16,
-    color: colors.orange
+    color: colors.main
 
   },
   submit: {
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.orange,
+    backgroundColor: colors.main,
     padding: 20,
     borderRadius: 10
   },

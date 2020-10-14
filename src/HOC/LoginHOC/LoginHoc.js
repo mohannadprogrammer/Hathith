@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         paddingBottom: 16,
         paddingTop: 16,
         fontSize: 22,
-        color: colors.orange
+        color: colors.main
 
     },
     activePoint: {

@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     subtitle: {
-        color: colors.orange,
+        color: colors.main,
         fontSize: 20
     },
     // sccreen 
