@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, Image, StyleSheet, TextInput } from 'react-native'
+import { Text, View, TouchableOpacity, Image, StyleSheet, TextInput, Alert } from 'react-native'
 import Header from '../../Components/Header/Header'
 import colors from '../../Assets/colors'
 
@@ -10,7 +10,8 @@ const io = I18n.currentLocale()
 export default class Profile extends Component {
     state = {
         user: {
-
+            lastname: "waheed",
+            firstname: "sdlflsd"
         },
         token: "",
         order: 4
@@ -21,11 +22,13 @@ export default class Profile extends Component {
     async getUserData() {
         try {
             const jsonValue = await AsyncStorage.getItem('user')
-            const token = await AsyncStorage.getItem('token')
             console.log("sdfsdfsf" + JSON.parse(jsonValue).lastname);
+            const { lastname, firstname, token, ...rest } = JSON.parse(jsonValue);
+            console.log(rest);
+
             this.setState({
-                user: JSON.parse(jsonValue),
-                token
+                user: { lastname, firstname },
+                token: token
             })
             return JSON.parse(jsonValue);
         } catch (e) {
@@ -36,18 +39,19 @@ export default class Profile extends Component {
         }
     }
     async sendData() {
-        console.log("slkdlf")
+        console.log(this.state.token);
+
         await fetch("http://209.97.181.175:5000" + "/user/update",
             {
                 method: 'POST',
                 headers:
                 {
                     'Content-Type': 'application/json',
-                    'auth': this.state.token
+                    'Authorization': "ggggg " + this.state.token
 
                 },
 
-                body: JSON.stringify(this.state)
+                body: JSON.stringify(this.state.user)
             }).then((response) => response.json()).then(async (responseJson) => {
                 let { code, message } = responseJson;
                 console.log(responseJson)
@@ -56,12 +60,12 @@ export default class Profile extends Component {
                     // await this.saveTokenAndUserData(responseJson.userData.token, responseJson.userData);
                     Alert.alert(
                         'نجحت العملية',
-                        'تم يتطابق رقم التاكيد',
+                        'تم حفظ البيانات',
                         [
 
                             {
                                 text: 'الغاء',
-                                onPress: () => this.props.navigation.navigate("login"),
+                                // onPress: () => this.props.navigation.navigate("login"),
                                 style: 'cancel'
                             },
                             {
@@ -76,7 +80,7 @@ export default class Profile extends Component {
                     // alert("لم تطابق البيانات ");
                     Alert.alert(
                         'فشل العملية',
-                        'لم يتطابق رقم التاكيد',
+                        'حدث خطأء في حفظ البيانات',
                         [
 
                             {
@@ -130,6 +134,15 @@ export default class Profile extends Component {
                         <TextInput
                             placeholder=" الاسم الاول"
                             placeholderTextColor={colors.main}
+                            onChangeText={(text) => {
+                                this.setState({
+                                    user: {
+                                        ...this.state.user,
+                                        firstname: text
+                                    }
+                                })
+                            }}
+
                             style={{ height: 40, borderColor: 'gray', width: '100%' }}
                             value={this.state.user.firstname}
 
@@ -142,6 +155,14 @@ export default class Profile extends Component {
                             placeholderTextColor={colors.main}
                             style={{ height: 40, borderColor: 'gray', width: '100%' }}
                             value={this.state.user.lastname}
+                            onChangeText={(text) => {
+                                this.setState({
+                                    user: {
+                                        ...this.state.user,
+                                        lastname: text
+                                    }
+                                })
+                            }}
 
                         />
                     </View>
