@@ -58,9 +58,8 @@ function MainStackNavigator() {
       headerMode="none"
       animationTypeForReplace="pop"
     >
-      <Stack.Screen name="Profile" component={Screen.Profile} />
-      <Stack.Screen name="main" component={Main} />
       <Stack.Screen name="login" component={Screen.Login} />
+      <Stack.Screen name="main" component={Main} />
 
       <Stack.Screen
         name='Check'
@@ -72,7 +71,7 @@ function MainStackNavigator() {
       <Stack.Screen name="Catogray" component={Screen.Catogary} />
       <Stack.Screen name="Store" component={Screen.Store} />
       <Stack.Screen name="Cart" component={Screen.Cart} />
-      {/* <Stack.Screen name="Profile" component={Screen.Profile} /> */}
+      <Stack.Screen name="Profile" component={Screen.Profile} />
 
     </Stack.Navigator>
 

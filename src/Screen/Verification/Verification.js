@@ -12,33 +12,13 @@ class Verification extends Component {
 
 
   }
-  async saveTokenAndUserData(token, user) {
+  async saveTokenAndUserData(user) {
     try {
-      await AsyncStorage.setItem(
-        'token',
-        token
-      );
-      // console.log(JSON.stringify(user));
-
       await AsyncStorage.setItem(
         'user',
         JSON.stringify(user)
       );
-      // this.props.navigation.navigate("home")
-      // this.props.navigation.dispatch(
-      //   CommonActions.reset(
-      //     {
-      //       index: 1,
-      //       routes: [
-      //         { name: 'home' },
-
-      //       ],
-      //     }
-      //   )
-      // )
-      // console.log("token seved", token)
     } catch (error) {
-      // Error saving data
       console.log(error)
 
     }
@@ -60,7 +40,7 @@ class Verification extends Component {
         console.log(responseJson)
         if (code || code == 1) {
           // alert("تمت العملية بي نجاح");
-          await this.saveTokenAndUserData(responseJson.userData.token, responseJson.userData);
+          await this.saveTokenAndUserData(responseJson.userData);
           Alert.alert(
             'نجحت العملية',
             'تم يتطابق رقم التاكيد',
@@ -73,7 +53,7 @@ class Verification extends Component {
               },
               {
                 text: "فتح التطبيق",
-                onPress: () => this.props.navigation.navigate("main")
+                onPress: () => this.props.navigation.navigate("Profile")
               }
             ],
             { cancelable: false }

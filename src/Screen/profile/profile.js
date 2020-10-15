@@ -19,6 +19,18 @@ export default class Profile extends Component {
     componentDidMount() {
         this.getUserData()
     }
+    async saveTokenAndUserData(user) {
+        try {
+            await AsyncStorage.setItem(
+                'user',
+                JSON.stringify(user)
+            );
+        } catch (error) {
+            console.log(error)
+
+        }
+    }
+
     async getUserData() {
         try {
             const jsonValue = await AsyncStorage.getItem('user')
@@ -39,7 +51,7 @@ export default class Profile extends Component {
         }
     }
     async sendData() {
-        console.log(this.state.token);
+        console.log(this.state.user);
 
         await fetch("http://209.97.181.175:5000" + "/user/update",
             {
@@ -53,9 +65,9 @@ export default class Profile extends Component {
 
                 body: JSON.stringify(this.state.user)
             }).then((response) => response.json()).then(async (responseJson) => {
-                let { code, message } = responseJson;
+                let { code, message, done } = responseJson;
                 console.log(responseJson)
-                if (code || code == 1) {
+                if (code || done) {
                     // alert("تمت العملية بي نجاح");
                     // await this.saveTokenAndUserData(responseJson.userData.token, responseJson.userData);
                     Alert.alert(
