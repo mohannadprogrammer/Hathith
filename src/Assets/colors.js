@@ -11,6 +11,7 @@ const colors = {
     light_gray: "#F2F2F2",
 
     danger: "#D90909",
+    light_danger: "#F28F8F"
 
 }
 export default colors;

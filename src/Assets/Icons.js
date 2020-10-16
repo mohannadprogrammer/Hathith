@@ -38,7 +38,7 @@ const Back = (color) => (
     <MaterialIcons name="arrow-back-ios" size={20} color={color} />
 )
 const Boot = (color) => (
-    <Entypo name="menu" size={30} color={color} />
+    <MaterialCommunityIcons name="android-messages" size={30} color={color} />
 )
 module.exports = {
     Stores,

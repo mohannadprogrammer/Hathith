@@ -24,9 +24,11 @@ export default class catogray extends Component {
             }
 
         ]
+        console.log(this.props.route);
+
         return (
             <View style={styles.container} >
-                <CartHeader name="المطاعم" navigate={this.props.navigation} ></CartHeader>
+                <CartHeader name={this.props.route.params.name} navigate={this.props.navigation} ></CartHeader>
                 <FlatList
                     data={data}
                     numColumns={2}

@@ -13,6 +13,12 @@ export default class Mainpage extends React.Component {
 
 
   render() {
+    const catagory = [
+      { tile: "alsdf", key: "3 ", name: "المطاعم", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+      { key: "1", name: "الصيدليات", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+      { key: "2", name: "سوبر ماركت", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+      { key: "4", name: "ادوات كهربائية", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+    ]
 
 
     const { navigation } = this.props
@@ -67,6 +73,8 @@ export default class Mainpage extends React.Component {
                   renderItem={({ item, ...rest }) => <OfferView key={item.key} />}
                   // numColumns={2}
                   horizontal
+                  showsHorizontalScrollIndicator={false}
+
                   style={{
                     // flex: 1,
                     height: 100
@@ -80,14 +88,23 @@ export default class Mainpage extends React.Component {
 
               </View>
               <SafeAreaView style={{ flex: 1, marginVertical: 22 }}>
-                <Text style={styles.cardtitle2}> المتاجر الاكثر مبيعا</Text>
+                <Text style={styles.cardtitle2}> انواع المتاجر </Text>
                 {/* <FlatList
                   data={[{ tile: "alsdf", key: "3 " }, { key: "1" }, { key: "2" }, { key: "4" }]}
                   renderItem={({ item, ...rest }) => <OverViewSale navigation={this.props.navigation} key={item.key} />}
                   numColumns={2}
+                  scrollEnabled
 
                   style={{ marginVertical: 22 }}
                 /> */}
+
+                {catagory.map((item, i) => {
+                  console.log(item);
+
+                  return (
+                    <OverViewSale navigation={this.props.navigation} key={i} data={item} />
+                  )
+                })}
               </SafeAreaView>
             </View>
 
@@ -103,8 +120,9 @@ export default class Mainpage extends React.Component {
           alignItems: "center",
           backgroundColor: colors.main,
           justifyContent: "center",
-          borderTopRightRadius: 20,
-          borderTopLeftRadius: 20
+          borderRadius: 50,
+          // borderTopRightRadius: 20,
+          // borderTopLeftRadius: 20
         }}
           onPress={() => {
             this.props.navigation.navigate("modal")
@@ -130,12 +148,12 @@ const styles = StyleSheet.create({
   },
   cardtitle: {
     fontSize: 14,
-    color: '#CD853F',
+    color: colors.main,
     paddingRight: 10
   },
   cardtitle2: {
     fontSize: 14,
-    color: '#CD853F',
+    color: colors.main,
     paddingRight: 10
 
   },

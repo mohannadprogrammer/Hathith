@@ -7,12 +7,12 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 export default class OverViewSale extends Component {
     render() {
 
-        const image = { uri: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" };
+        const image = { uri: this.props.data.image };
         return (
             <TouchableOpacity
                 style={{ flex: 1, borderRadius: 20 }}
                 onPress={() => {
-                    this.props.navigation.navigate("Catogray")
+                    this.props.navigation.navigate("Catogray", { id: this.props.data.key, name: this.props.data.name })
                     // console.log("ksldklsdk")
                 }}
             >
@@ -21,7 +21,7 @@ export default class OverViewSale extends Component {
                 >
                     <View style={styles.container}>
 
-                        <Text style={styles.text} >المطاعم</Text>
+                        <Text style={styles.text} >{this.props.data.name}</Text>
 
 
                     </View>
@@ -34,6 +34,10 @@ export default class OverViewSale extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        padding: 5,
+        borderBottomWidth: 2,
+        borderBottomColor: colors.main,
+        backgroundColor: "#ffff",
         flexDirection: "column"
     },
     header: {
@@ -56,7 +60,8 @@ const styles = StyleSheet.create({
 
     text:
     {
-        color: colors.white,
+
+        color: colors.main,
         fontSize: 26,
         fontWeight: "bold"
 

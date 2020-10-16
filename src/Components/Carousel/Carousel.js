@@ -28,7 +28,7 @@ class Carousel extends Component {
                 scrollValue = 0
                 scrolled = 0
             }
-            ref.current.scrollToOffset({ animated: true, offset: scrollValue })
+            // ref.current.scrollToOffset({ animated: true, offset: scrollValue })
         }, 4000)
     }
     render() {
