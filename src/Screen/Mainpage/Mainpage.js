@@ -24,7 +24,29 @@ export default class Mainpage extends React.Component {
             <Header name="المتاجر"
             />
             <View style={{ flex: 1 }}>
-              <Carousel data={dummyData} />
+              <Carousel
+                data={[{
+                  title: ' مساحات اعلانيه', url: 'https://i.ibb.co/hYjK44F/anise-aroma-art-bazaar-277253.jpg',
+                  description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                  id: 1
+
+                },
+                {
+                  title: '2 مساحات اعلانيه', url: 'https://i.ibb.co/JtS24qP/food-inside-bowl-1854037.jpg',
+                  description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                  id: 2
+                },
+                {
+                  title: 'مساحات اعلانيه ', url: 'https://i.ibb.co/JxykVBt/flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg',
+                  description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                  id: 3
+                },
+                {
+                  title: 'مساحات اعلانيه ', url: 'https://i.ibb.co/JxykVBt/flat-lay-photography-of-vegetable-salad-on-plate-1640777.jpg',
+                  description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                  id: 3
+                }]}
+              />
 
 
             </View>
@@ -59,13 +81,13 @@ export default class Mainpage extends React.Component {
               </View>
               <SafeAreaView style={{ flex: 1, marginVertical: 22 }}>
                 <Text style={styles.cardtitle2}> المتاجر الاكثر مبيعا</Text>
-                <FlatList
+                {/* <FlatList
                   data={[{ tile: "alsdf", key: "3 " }, { key: "1" }, { key: "2" }, { key: "4" }]}
                   renderItem={({ item, ...rest }) => <OverViewSale navigation={this.props.navigation} key={item.key} />}
                   numColumns={2}
 
                   style={{ marginVertical: 22 }}
-                />
+                /> */}
               </SafeAreaView>
             </View>
 
