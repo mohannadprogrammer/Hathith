@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Button } from 'react-native'
-
+import Loading from "../../Components/Loading/loading"
 class LoginHOC extends Component {
     render() {
 
         return (
             <View style={styles.container}>
+                <Loading {... this.props} />
                 <View style={styles.header}>
                     <Image
                         style={styles.stretch}

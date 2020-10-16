@@ -1,9 +1,11 @@
 import React, { Component, useState, useRef, useEffect } from 'react';
-import PhoneInput from "react-native-phone-number-input";
-import { StyleSheet, ActivityIndicator, View, Text, TouchableOpacity, Image, TextInput, Button } from 'react-native'
+import {
+    StyleSheet, ActivityIndicator, View, Text, TouchableOpacity, Image, TextInput,
+    Button,
+
+} from 'react-native'
 import LoginHOC from '../../HOC/LoginHOC/LoginHoc'
 import AsyncStorage from '@react-native-community/async-storage';
-import CountryPicker from 'react-native-country-picker-modal';
 import BASEAXIOSURL, { setClientToken } from '../../api/axios';
 
 
@@ -44,6 +46,7 @@ class Login extends Component {
         return (
             <LoginHOC
                 step={1}
+                loaging={false}
                 footer={() => (
                     <View>
                         <View style={styles.footer}>
@@ -66,8 +69,13 @@ class Login extends Component {
                                     })
 
                                 }}
-
                             />
+                            {
+                                this.state.phone.length !== 10 || this.state.phone === "" ?
+                                    <Text style={{ color: colors.danger, alignSelf: "center", fontSize: 12 }}>
+                                        رقم الهاتف يجب ان يتكون من 10 خانات
+                                    </Text> : null
+                            }
                             <TouchableOpacity
                                 style={styles.buttonContainer}
                                 onPress={() => this.props.navigation.navigate("main")}>

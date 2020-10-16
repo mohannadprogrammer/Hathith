@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import LoginHOC from '../../HOC/LoginHOC/LoginHoc'
 class Verification extends Component {
   state = {
-
+    loading: false
   }
   constructor(props) {
     super(props);
@@ -25,6 +25,9 @@ class Verification extends Component {
   }
   async sendData() {
     console.log("slkdlf")
+    this.setState({
+      loading: true
+    })
     await fetch("http://209.97.181.175:5000" + "/user/login",
       {
         method: 'POST',
@@ -38,29 +41,38 @@ class Verification extends Component {
       }).then((response) => response.json()).then(async (responseJson) => {
         let { code, message } = responseJson;
         console.log(responseJson)
+
         if (code || code == 1) {
           // alert("تمت العملية بي نجاح");
           await this.saveTokenAndUserData(responseJson.userData);
-          Alert.alert(
-            'نجحت العملية',
-            'تم يتطابق رقم التاكيد',
-            [
+          this.setState({
+            loading: false
+          })
+          this.props.navigation.navigate("Profile")
 
-              {
-                text: 'الغاء',
-                onPress: () => this.props.navigation.navigate("login"),
-                style: 'cancel'
-              },
-              {
-                text: "فتح التطبيق",
-                onPress: () => this.props.navigation.navigate("Profile")
-              }
-            ],
-            { cancelable: false }
-          );
+          // Alert.alert(
+          //   'نجحت العملية',
+          //   'تم يتطابق رقم التاكيد',
+          //   [
+
+          //     {
+          //       text: 'الغاء',
+          //       onPress: () => this.props.navigation.navigate("login"),
+          //       style: 'cancel'
+          //     },
+          //     {
+          //       text: "فتح التطبيق",
+          //       onPress: () => this.props.navigation.navigate("Profile")
+          //     }
+          //   ],
+          //   { cancelable: false }
+          // );
 
         } else {
           // alert("لم تطابق البيانات ");
+          this.setState({
+            loading: false
+          })
           Alert.alert(
             'فشل العملية',
             'لم يتطابق رقم التاكيد',
@@ -82,22 +94,11 @@ class Verification extends Component {
             { cancelable: false }
           );
         }
-        // switch (code) {
-        //   case 0:
-
-        //     alert(strings("verfiy.response.successful"))
-        //     break;
-        //   case -5:
-        //     alert(strings("verfiy.response.userNotFound"))
-        //     break;
-        //   case -2:
-        //     alert(strings("verfiy.response.userfound"))
-        //     break;
-
-        // }
 
       }).catch((error) => {
-        // alert(strings("verfiy.response.unauthorized"))
+        this.setState({
+          loading: false
+        })
         console.log(error, ">>>>>>>>>>>>>>>>>>>")
       });
 
@@ -117,6 +118,7 @@ class Verification extends Component {
     return (
       <LoginHOC
         step={2}
+        loading={this.state.loading}
         footer={() => (
           <View>
             <View style={styles.footer}>
