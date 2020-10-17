@@ -58,7 +58,7 @@ function MainStackNavigator() {
       headerMode="none"
       animationTypeForReplace="pop"
     >
-      {/* <Stack.Screen name="login" component={Screen.Login} /> */}
+      <Stack.Screen name="login" component={Screen.Login} />
       <Stack.Screen name="main" component={Main} />
 
       <Stack.Screen
