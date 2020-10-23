@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import LoginHOC from '../../HOC/LoginHOC/LoginHoc'
 import AsyncStorage from '@react-native-community/async-storage';
-import BASEAXIOSURL, { setClientToken } from '../../api/axios';
+import { getCategoryApi, getShopOfCategoryApi } from '../../api'
 
 
 class Login extends Component {
@@ -16,7 +16,23 @@ class Login extends Component {
         disable: true
     };
 
-    componentWillUnmount() { }
+    async componentDidUnmount() {
+        try {
+            const jsonValue = await AsyncStorage.getItem('user')
+            // console.log("sdfsdfsf" + JSON.parse(jsonValue).lastname);
+            var { lastname, firstname, token, ...rest } = await JSON.parse(jsonValue);
+            await console.log(token);
+            // getCategoryApi(token).then((Response) => {
+            //     console.log(Response);
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
+        } catch (error) {
+
+        }
+
+
+    }
 
     onPhoneChange = phone => {
         this.setState({ phone });

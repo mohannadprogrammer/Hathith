@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Alert, TextInput, Button } fr
 import CodeInput from 'react-native-confirmation-code-input'
 import AsyncStorage from '@react-native-community/async-storage';
 import LoginHOC from '../../HOC/LoginHOC/LoginHoc'
+import { LoginConfiramtion } from '../../api'
 class Verification extends Component {
   state = {
     loading: false
@@ -28,6 +29,7 @@ class Verification extends Component {
     this.setState({
       loading: true
     })
+
     await fetch("http://209.97.181.175:5000" + "/user/login",
       {
         method: 'POST',
@@ -43,7 +45,6 @@ class Verification extends Component {
         console.log(responseJson)
 
         if (code || code == 1) {
-          // alert("تمت العملية بي نجاح");
           await this.saveTokenAndUserData(responseJson.userData);
           this.setState({
             loading: false
@@ -69,7 +70,6 @@ class Verification extends Component {
           // );
 
         } else {
-          // alert("لم تطابق البيانات ");
           this.setState({
             loading: false
           })

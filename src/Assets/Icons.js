@@ -40,6 +40,11 @@ const Back = (color) => (
 const Boot = (color) => (
     <MaterialCommunityIcons name="android-messages" size={30} color={color} />
 )
+//user-edit
+const Edit = (props) => (
+    <FontAwesome5 name="user-edit" {...props} />
+)
+
 module.exports = {
     Stores,
     Orders,
@@ -47,5 +52,7 @@ module.exports = {
     Person,
     Cart,
     Back,
-    Boot
+    Boot,
+    Edit,
+
 }

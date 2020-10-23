@@ -3,8 +3,9 @@ import { Text, View, ImageBackground, Image, StyleSheet } from 'react-native'
 import Header from '../../Components/Header/Header'
 import colors from '../../Assets/colors'
 import AsyncStorage from '@react-native-community/async-storage'
-
+import Icons from '../../Assets/Icons'
 import I18n from 'react-native-i18n'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 const io = I18n.currentLocale()
 export default class personal extends Component {
     state = {
@@ -15,6 +16,7 @@ export default class personal extends Component {
     }
     componentDidMount() {
         this.getUserData()
+
     }
     async getUserData() {
         try {
@@ -41,9 +43,27 @@ export default class personal extends Component {
                             style={styles.image}
                             source={require('../../Assets/images/logo.png')}
                         />
-                        <View style={{ height: 40, width: 40, borderRadius: 40, backgroundColor: colors.gray, position: 'absolute', right: 20, bottom: 0 }}>
+                        <TouchableOpacity style={{
+                            height: 40,
+                            width: 45,
+                            flex: 0,
+                            padding: 10,
+                            borderRadius: 40,
+                            // justifyContent: "center",
+                            // alignItems: "center",
+                            backgroundColor: colors.blue,
+                            // position: 'absolute',
+                            right: -20, bottom: 16,
+                            zIndex: 5,
+                        }}
+                            onPress={() => {
+                                console.log("test bro file");
 
-                        </View>
+                                this.props.navigation.navigate("Profile")
+                            }}
+                        >
+                            <Icons.Edit size={20} color={colors.white} />
+                        </TouchableOpacity>
 
                     </View>
 

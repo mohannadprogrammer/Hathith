@@ -7,7 +7,7 @@ import OfferView from '../../Components/OfferView/offerstoreView'
 import OverViewSale from '../../Components/OfferView/OverViewSale'
 import colors from '../../Assets/colors';
 import Icons from '../../Assets/Icons';
-
+import { getCategoryApi, getShopOfCategoryApi } from '../../api'
 
 export default class Mainpage extends React.Component {
 

@@ -1,41 +1,52 @@
 import axios from "./axios";
 
-const URL = "http://192.186.48.40:5000/";
+const URL = "http://209.97.181.175:5000/";
+import AsyncStorage from '@react-native-community/async-storage'
 
-// require("./product.js")
-export function getProductApi(langang) {
-  // console.log(`${URL} /product_api?language=en`)
-  return (
-    axios.get(`${URL}/product_api?language=${langang}`))
+export async function saveTokenAndUserData(user) {
+  try {
+    await AsyncStorage.setItem(
+      'user',
+      JSON.stringify(user)
+    );
+  } catch (error) {
+    console.log(error)
+
+  }
 }
 
+export async function getToken(setState) {
+  try {
+    const user = await AsyncStorage.getItem('user')
+    const { lastname, firstname, token, ...rest } = JSON.parse(user);
+    setState({
+      token
+    })
+    // console.log(token);
+    // return token;
 
-//login and registration 
-export function loginApi(phone) {
-  console.log(`${URL}/`)
-  return (
-    axios.post(`${URL}/user/login`, { phone }))
-}
-export function LoginConfiramtion(phone, OTP) {
-  console.log(`${URL} /`)
-  return (
-    axios.post(`${URL}/login_phone_code`, { phone, OTP }))
-}
-export function Registaration(user_name, phone) {
-  // console.log(`${URL} /admin/login`)
-  return (
-    axios.post(`${URL}/user_api`, { user_name, phone }))
-}
-export function updateUserInformation(id, userData) {
+  } catch (err) {
 
-  return (
-    axios.post(`${URL}/user_api/` + id, userData))
+  }
 }
 
-
-/// order apo 
-export function createOrderApi(order) {
-
+// console.log(getToken());
+// getToken();
+export function getCategoryApi(token) {
+  axios.defaults.headers = {
+    ContentType: "application/json",
+    Authorization: `Bearer ${token}`,
+  }
   return (
-    axios.post(`${URL}/order_api`, order))
+    axios.post(`${URL}/shop/category`)
+  )
+}
+export function getShopOfCategoryApi(id, token) {
+  axios.defaults.headers = {
+    ContentType: "application/json",
+    Authorization: `Bearer ${token}`,
+  }
+  return (
+    axios.post(`${URL}/shop/` + id)
+  )
 }

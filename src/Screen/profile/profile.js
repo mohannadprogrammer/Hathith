@@ -6,6 +6,7 @@ import colors from '../../Assets/colors'
 import AsyncStorage from '@react-native-community/async-storage'
 import I18n from 'react-native-i18n'
 const io = I18n.currentLocale()
+import { saveTokenAndUserData } from '../../api'
 
 export default class Profile extends Component {
     state = {
@@ -19,17 +20,17 @@ export default class Profile extends Component {
     componentDidMount() {
         this.getUserData()
     }
-    async saveTokenAndUserData(user) {
-        try {
-            await AsyncStorage.setItem(
-                'user',
-                JSON.stringify(user)
-            );
-        } catch (error) {
-            console.log(error)
+    // async saveTokenAndUserData(user) {
+    //     try {
+    //         await AsyncStorage.setItem(
+    //             'user',
+    //             JSON.stringify(user)
+    //         );
+    //     } catch (error) {
+    //         console.log(error)
 
-        }
-    }
+    //     }
+    // }
 
     async getUserData() {
         try {
@@ -69,7 +70,7 @@ export default class Profile extends Component {
                 console.log(responseJson)
                 if (code || done) {
                     // alert("تمت العملية بي نجاح");
-                    // await this.saveTokenAndUserData(responseJson.userData.token, responseJson.userData);
+                    await saveTokenAndUserData(responseJson.userData);
                     Alert.alert(
                         'نجحت العملية',
                         'تم حفظ البيانات',
