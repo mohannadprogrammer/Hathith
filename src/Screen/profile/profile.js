@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import I18n from 'react-native-i18n'
 const io = I18n.currentLocale()
 import { saveTokenAndUserData } from '../../api'
-
+import Icons from '../../Assets/Icons'
 export default class Profile extends Component {
     state = {
         user: {
@@ -137,9 +137,29 @@ export default class Profile extends Component {
                             style={styles.image}
                             source={require('../../Assets/images/ayman.jpg')}
                         />
-                        <View style={{ height: 40, width: 40, borderRadius: 40, backgroundColor: colors.gray, position: 'absolute', right: 20, bottom: 0 }}>
 
-                        </View>
+                        <TouchableOpacity style={{
+                            height: 40,
+                            width: 45,
+                            flex: 0,
+                            padding: 10,
+                            borderRadius: 40,
+                            // justifyContent: "center",
+                            // alignItems: "center",
+                            backgroundColor: colors.blue,
+                            // position: 'absolute',
+                            right: -20, bottom: 16,
+                            zIndex: 5,
+                        }}
+                            onPress={() => {
+                                console.log("test bro file");
+
+                                // this.props.navigation.navigate("Profile")
+                            }}
+                        >
+                            <Icons.Edit size={20} color={colors.white} />
+                        </TouchableOpacity>
+
 
                     </View>
 

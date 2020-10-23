@@ -50,3 +50,72 @@ export function getShopOfCategoryApi(id, token) {
     axios.post(`${URL}/shop/` + id)
   )
 }
+
+
+export function getShopProducts(id, token) {
+  axios.defaults.headers = {
+    ContentType: "application/json",
+    Authorization: `Bearer ${token}`,
+  }
+  return (
+    axios.post(`${URL}/shop/` + id)
+  )
+}
+
+export function updataStatus(token, data) {
+  axios.defaults.headers = {
+    ContentType: "application/json",
+    Authorization: `Bearer ${token}`,
+  }
+  return (
+    axios.post(`${URL}/user/update-state`, data)
+  )
+}
+//order
+export function getUserOrders(token) {
+  axios.defaults.headers = {
+    ContentType: "application/json",
+    Authorization: `Bearer ${token}`,
+  }
+  return (
+    axios.post(`${URL}/order/userOrder`)
+  )
+}
+export function ordreProduct(token, data) {
+  axios.defaults.headers = {
+    ContentType: "application/json",
+    Authorization: `Bearer ${token}`,
+  }
+  return (
+    axios.post(`${URL}/order/userOrder`, data)
+  )
+}
+export function orderOffer(token, data) {
+  axios.defaults.headers = {
+    ContentType: "application/json",
+    Authorization: `Bearer ${token}`,
+  }
+  return (
+    axios.post(`${URL}/order/offer`, data)
+  )
+}
+export function orderMessage(token, data) {
+  axios.defaults.headers = {
+    ContentType: "application/json",
+    Authorization: `Bearer ${token}`,
+  }
+  return (
+    axios.post(`${URL}/order/message`, data)
+  )
+}
+
+export function orderAccept(token, data) {
+  axios.defaults.headers = {
+    ContentType: "application/json",
+    Authorization: `Bearer ${token}`,
+  }
+  return (
+    axios.post(`${URL}/order/accept-offer`, data)
+  )
+}
+
