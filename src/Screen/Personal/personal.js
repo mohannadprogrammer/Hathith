@@ -60,8 +60,18 @@ export default class personal extends Component {
                         }}
                             onPress={() => {
                                 console.log("test bro file");
+                                this.props.navigation.dispatch(
+                                    CommonActions.reset(
+                                        {
+                                            index: 1,
+                                            routes: [
+                                                { name: 'Profile' },
 
-                                this.props.navigation.navigate("Profile")
+                                            ],
+                                        }
+                                    )
+                                )
+                                // this.props.navigation.navigate("Profile")
                             }}
                         >
                             <Icons.Edit size={20} color={colors.white} />

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, Image, StyleSheet, TextInput, Alert } from 'react-native'
+import { Text, View, TouchableOpacity, Image, StyleSheet, TextInput, Alert, StatusBar } from 'react-native'
 import Header from '../../Components/Header/Header'
 import colors from '../../Assets/colors'
 import { CommonActions } from '@react-navigation/native';
 // import AsyncStorage from '@react-native-community/async-storage'
 import AsyncStorage from '@react-native-community/async-storage'
+import ImagePicker from 'react-native-image-picker'
 import I18n from 'react-native-i18n'
 const io = I18n.currentLocale()
 import { saveTokenAndUserData } from '../../api'
@@ -56,6 +57,17 @@ export default class Profile extends Component {
 
         }
     }
+    // handleChoosePhoto = () => {
+    //     const options = {
+    //         noData: true,
+    //     }
+    //     ImagePicker.launchImageLibrary(options, response => {
+    //         if (response.uri) {
+    //             this.setState({ photo: response })
+    //         }
+    //     })
+    // }
+
     async sendData() {
         console.log(this.state);
 
@@ -143,6 +155,8 @@ export default class Profile extends Component {
         return (
             <View style={{ flex: 1 }}>
                 {/* <Header name="البروفايل"></Header> */}
+                <StatusBar barStyle="dark-content" backgroundColor={colors.white} />
+
                 <Text
                     style={{
                         textAlign: "center",

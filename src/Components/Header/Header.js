@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, StatusBar } from 'react-native'
 import colors from '../../Assets/colors'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
@@ -7,6 +7,8 @@ export default class Header extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar barStyle="dark-content" backgroundColor={colors.white} />
+
                 <Text style={styles.headerName}>{this.props.name} </Text>
                 <View style={{ paddingLeft: 200 }}>
                     <TouchableOpacity>

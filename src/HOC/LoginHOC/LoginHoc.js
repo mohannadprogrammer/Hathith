@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput, Button } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar, Button } from 'react-native'
 import Loading from "../../Components/Loading/loading"
 class LoginHOC extends Component {
     render() {
@@ -7,6 +7,8 @@ class LoginHOC extends Component {
         return (
             <View style={styles.container}>
                 <Loading {... this.props} />
+                <StatusBar barStyle="dark-content" backgroundColor={colors.white} />
+
                 <View style={styles.header}>
                     <Image
                         style={styles.stretch}

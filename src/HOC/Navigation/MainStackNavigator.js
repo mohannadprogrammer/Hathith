@@ -84,7 +84,7 @@ class MainStackNavigator extends React.Component {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-          {/* <StatusBar barStyle="light-content" backgroundColor={colors.blue} /> */}
+          <StatusBar barStyle="light-content" backgroundColor={colors.blue} />
           <Text style={{ color: colors.white, fontSize: 30 }}>Hathith</Text>
 
           <ActivityIndicator size="small" color="#ffffff" animating />
