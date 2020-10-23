@@ -21,6 +21,10 @@ export default class Profile extends Component {
     componentDidMount() {
         this.getUserData()
     }
+    UNSAFE_componentWillMount() {
+        this.getUserData()
+
+    }
     // async saveTokenAndUserData(user) {
     //     try {
     //         await AsyncStorage.setItem(
@@ -42,7 +46,7 @@ export default class Profile extends Component {
 
             this.setState({
                 user: { lastname, firstname },
-                token: token
+                token
             })
             return JSON.parse(jsonValue);
         } catch (e) {
@@ -53,7 +57,7 @@ export default class Profile extends Component {
         }
     }
     async sendData() {
-        console.log(this.state.user);
+        console.log(this.state);
 
         await fetch("http://209.97.181.175:5000" + "/user/update",
             {
@@ -67,8 +71,10 @@ export default class Profile extends Component {
 
                 body: JSON.stringify(this.state.user)
             }).then((response) => response.json()).then(async (responseJson) => {
-                let { code, message, done } = responseJson;
-                console.log(responseJson)
+                let { code, message, done } = await responseJson;
+                // console.log(responseJson);
+
+                // console.log(responseJson)
                 if (code || done) {
                     // alert("تمت العملية بي نجاح");
                     await saveTokenAndUserData(responseJson.userData);
@@ -84,7 +90,19 @@ export default class Profile extends Component {
                             },
                             {
                                 text: "فتح التطبيق",
-                                onPress: () => this.props.navigation.navigate("main")
+                                onPress: () => {
+                                    this.props.navigation.dispatch(
+                                        CommonActions.reset(
+                                            {
+                                                index: 1,
+                                                routes: [
+                                                    { name: 'main' },
+
+                                                ],
+                                            }
+                                        )
+                                    )
+                                }
                             }
                         ],
                         { cancelable: false }
@@ -92,6 +110,8 @@ export default class Profile extends Component {
 
                 } else {
                     // alert("لم تطابق البيانات ");
+                    console.log(responseJson);
+
                     Alert.alert(
                         'فشل العملية',
                         'حدث خطأء في حفظ البيانات',
@@ -169,6 +189,8 @@ export default class Profile extends Component {
                             placeholder=" الاسم الاول"
                             placeholderTextColor={colors.main}
                             onChangeText={(text) => {
+                                console.log(this.state);
+
                                 this.setState({
                                     user: {
                                         ...this.state.user,
@@ -205,17 +227,7 @@ export default class Profile extends Component {
                             onPress={() => {
                                 this.sendData();
                                 // this.props.navigation.navigate('main')
-                                this.props.navigation.dispatch(
-                                    CommonActions.reset(
-                                        {
-                                            index: 1,
-                                            routes: [
-                                                { name: 'main' },
 
-                                            ],
-                                        }
-                                    )
-                                )
                             }}
                             style={styles.botton}
                         >
