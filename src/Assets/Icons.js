@@ -44,7 +44,11 @@ const Boot = (color) => (
 const Edit = (props) => (
     <FontAwesome5 name="user-edit" {...props} />
 )
+//power-off
 
+const Power = (props) => (
+    <FontAwesome name="power-off" {...props} />
+)
 module.exports = {
     Stores,
     Orders,
@@ -54,5 +58,5 @@ module.exports = {
     Back,
     Boot,
     Edit,
-
+    Power
 }

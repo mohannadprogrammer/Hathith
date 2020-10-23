@@ -100,7 +100,7 @@ export default class personal extends Component {
                         }}
                     >
 
-                        <Icons.Edit size={20} color={colors.danger} />
+                        <Icons.Power size={20} color={colors.danger} />
                         <Text style={{ color: colors.danger }}>تسجيل خروج</Text>
                     </TouchableOpacity>
                 </View>
