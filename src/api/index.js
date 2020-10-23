@@ -14,7 +14,14 @@ export async function saveTokenAndUserData(user) {
 
   }
 }
-
+export const clearAppData = async function () {
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    await AsyncStorage.multiRemove(keys);
+  } catch (error) {
+    console.error('Error clearing app data.');
+  }
+}
 export async function getToken(setState) {
   try {
     const user = await AsyncStorage.getItem('user')

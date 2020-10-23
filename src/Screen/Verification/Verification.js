@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Alert, TextInput, Button } from 'react-native'
+import { CommonActions } from '@react-navigation/native';
 import CodeInput from 'react-native-confirmation-code-input'
 import AsyncStorage from '@react-native-community/async-storage';
 import LoginHOC from '../../HOC/LoginHOC/LoginHoc'
@@ -49,7 +50,18 @@ class Verification extends Component {
           this.setState({
             loading: false
           })
-          this.props.navigation.navigate("Profile")
+          // this.props.navigation.navigate("Profile")
+          this.props.navigation.dispatch(
+            CommonActions.reset(
+              {
+                index: 1,
+                routes: [
+                  { name: 'Profile' },
+
+                ],
+              }
+            )
+          )
 
           // Alert.alert(
           //   'نجحت العملية',

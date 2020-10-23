@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, ImageBackground, Image, StyleSheet } from 'react-native'
+import { CommonActions } from '@react-navigation/native';
 import Header from '../../Components/Header/Header'
 import colors from '../../Assets/colors'
 import AsyncStorage from '@react-native-community/async-storage'
@@ -7,6 +8,7 @@ import Icons from '../../Assets/Icons'
 import I18n from 'react-native-i18n'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 const io = I18n.currentLocale()
+import { clearAppData } from '../../api/index'
 export default class personal extends Component {
     state = {
         user: {
@@ -78,6 +80,29 @@ export default class personal extends Component {
                         <Text style={{ color: colors.main }}>عدد الطلبات </Text>
                         <Text style={{ color: colors.main }}>{this.state.order} </Text>
                     </View>
+                    <TouchableOpacity style={[styles.info, { flexDirection: "column", alignItems: 'center' }]}
+                        onPress={() => {
+                            console.log("test bro file");
+                            clearAppData();
+                            this.props.navigation.dispatch(
+                                CommonActions.reset(
+                                    {
+                                        index: 1,
+                                        routes: [
+                                            { name: 'login' },
+
+                                        ],
+                                    }
+                                )
+                            )
+
+
+                        }}
+                    >
+
+                        <Icons.Edit size={20} color={colors.danger} />
+                        <Text style={{ color: colors.danger }}>تسجيل خروج</Text>
+                    </TouchableOpacity>
                 </View>
             </View >
         )

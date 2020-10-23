@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native'
+import { Text, TouchableOpacity, View, StatusBar, ActivityIndicator } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-
+import AsyncStorage from '@react-native-community/async-storage'
 
 import Screen from '../../Screen/index'
 import Icons from '../../Assets/Icons';
@@ -51,34 +51,99 @@ function Main() {
     </Tab.Navigator>
   )
 }
-function MainStackNavigator() {
-  return (
-    // <NavigationContainer>
-    <Stack.Navigator initialRouteName='Login'
-      headerMode="none"
-      animationTypeForReplace="pop"
-    >
-      <Stack.Screen name="login" component={Screen.Login} />
-      <Stack.Screen name="main" component={Main} />
+class MainStackNavigator extends React.Component {
+  state = {
+    loading: true,
+    login: true
+  }
+  checkLogin = async () => {
+    try {
+      let user = await AsyncStorage.getItem('user')
+      console.log("token", user)
+      this.setState({
+        loading: false,
+        login: (user != null)
+      })
+      return
+    } catch (e) {
+      // error reading value
+    }
 
-      <Stack.Screen
-        name='Check'
-        component={Screen.Verification}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen name="Bill" component={Screen.Bill} />
-      <Stack.Screen name="Location" component={Screen.SelectLocation} />
-      <Stack.Screen name="Catogray" component={Screen.Catogary} />
-      <Stack.Screen name="Store" component={Screen.Store} />
-      <Stack.Screen name="Cart" component={Screen.Cart} />
-      <Stack.Screen name="Profile" component={Screen.Profile} />
+  }
+  componentDidMount() {
+    console.log("sdklflsd");
 
-    </Stack.Navigator>
+    this.checkLogin();
+  }
+  render() {
+    if (this.state.loading) {
+      return (
+        <View style={{
+          flex: 1,
+          backgroundColor: colors.blue,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          {/* <StatusBar barStyle="light-content" backgroundColor={colors.blue} /> */}
+          <Text style={{ color: colors.white, fontSize: 30 }}>Hathith</Text>
 
-    // {/* </NavigationContainer> */ }
-  )
+          <ActivityIndicator size="small" color="#ffffff" animating />
+          <Text style={{ color: colors.white }}>جاري تحميل البيانات ...</Text>
+
+        </View>
+      )
+    } else {
+      return (
+        <Stack.Navigator
+          headerMode="none"
+          animationTypeForReplace="pop"
+        >
+          {this.state.login ?
+            <>
+              <Stack.Screen name="main" component={Main} />
+              <Stack.Screen name="login" component={Screen.Login} />
+
+              <Stack.Screen
+                name='Check'
+                component={Screen.Verification}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen name="Bill" component={Screen.Bill} />
+              <Stack.Screen name="Location" component={Screen.SelectLocation} />
+              <Stack.Screen name="Catogray" component={Screen.Catogary} />
+              <Stack.Screen name="Store" component={Screen.Store} />
+              <Stack.Screen name="Cart" component={Screen.Cart} />
+              <Stack.Screen name="Profile" component={Screen.Profile} />
+
+
+            </> :
+            <>
+              <Stack.Screen name="login" component={Screen.Login} />
+              <Stack.Screen name="main" component={Main} />
+
+
+              <Stack.Screen
+                name='Check'
+                component={Screen.Verification}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen name="Bill" component={Screen.Bill} />
+              <Stack.Screen name="Location" component={Screen.SelectLocation} />
+              <Stack.Screen name="Catogray" component={Screen.Catogary} />
+              <Stack.Screen name="Store" component={Screen.Store} />
+              <Stack.Screen name="Cart" component={Screen.Cart} />
+              <Stack.Screen name="Profile" component={Screen.Profile} />
+
+            </>}
+
+        </Stack.Navigator>
+      )
+
+    }
+
+
+  }
 }
-
 function RootStackNavigator() {
   return (
     <NavigationContainer>

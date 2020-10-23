@@ -16,23 +16,23 @@ class Login extends Component {
         disable: true
     };
 
-    async componentDidUnmount() {
-        try {
-            const jsonValue = await AsyncStorage.getItem('user')
-            // console.log("sdfsdfsf" + JSON.parse(jsonValue).lastname);
-            var { lastname, firstname, token, ...rest } = await JSON.parse(jsonValue);
-            await console.log(token);
-            // getCategoryApi(token).then((Response) => {
-            //     console.log(Response);
-            // }).catch((error) => {
-            //     console.log(error);
-            // });
-        } catch (error) {
+    // async componentDidUnmount() {
+    //     try {
+    //         const jsonValue = await AsyncStorage.getItem('user')
+    //         // console.log("sdfsdfsf" + JSON.parse(jsonValue).lastname);
+    //         var { lastname, firstname, token, ...rest } = await JSON.parse(jsonValue);
+    //         await console.log(token);
+    //         // getCategoryApi(token).then((Response) => {
+    //         //     console.log(Response);
+    //         // }).catch((error) => {
+    //         //     console.log(error);
+    //         // });
+    //     } catch (error) {
 
-        }
+    //     }
 
 
-    }
+    // }
 
     onPhoneChange = phone => {
         this.setState({ phone });

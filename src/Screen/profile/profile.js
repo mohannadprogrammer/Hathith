@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, Image, StyleSheet, TextInput, Alert } from 'react-native'
 import Header from '../../Components/Header/Header'
 import colors from '../../Assets/colors'
-
+import { CommonActions } from '@react-navigation/native';
+// import AsyncStorage from '@react-native-community/async-storage'
 import AsyncStorage from '@react-native-community/async-storage'
 import I18n from 'react-native-i18n'
 const io = I18n.currentLocale()
@@ -204,6 +205,17 @@ export default class Profile extends Component {
                             onPress={() => {
                                 this.sendData();
                                 // this.props.navigation.navigate('main')
+                                this.props.navigation.dispatch(
+                                    CommonActions.reset(
+                                        {
+                                            index: 1,
+                                            routes: [
+                                                { name: 'main' },
+
+                                            ],
+                                        }
+                                    )
+                                )
                             }}
                             style={styles.botton}
                         >
