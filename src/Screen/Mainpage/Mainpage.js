@@ -10,22 +10,24 @@ import Icons from '../../Assets/Icons';
 import { getCategoryApi, getShopOfCategoryApi } from '../../api'
 
 export default class Mainpage extends React.Component {
-
+  state = {
+    catagory: []
+  }
   compoentDidAmount() {
-    getCategoryApi(token).then((responese) => {
-      this.setState({
-        catagory: response.data
-      })
-    })
+    // getCategoryApi(token).then((responese) => {
+    //   this.setState({
+    //     catagory: response.data
+    //   })
+    // })
   }
   render() {
-    const catagory = this.state.catagory
-    //   [
-    //   { tile: "alsdf", key: "3 ", name: "المطاعم", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
-    //   { key: "1", name: "الصيدليات", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
-    //   { key: "2", name: "سوبر ماركت", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
-    //   { key: "4", name: "ادوات كهربائية", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
-    // ]
+    const catagory =// this.state.catagory
+      [
+        { tile: "alsdf", key: "3 ", name: "المطاعم", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+        { key: "1", name: "الصيدليات", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+        { key: "2", name: "سوبر ماركت", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+        { key: "4", name: "ادوات كهربائية", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+      ]
 
 
     const { navigation } = this.props
