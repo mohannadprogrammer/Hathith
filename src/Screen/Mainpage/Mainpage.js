@@ -11,6 +11,7 @@ import { getCategoryApi, getShopOfCategoryApi } from '../../api'
 
 export default class Mainpage extends React.Component {
   state = {
+<<<<<<< HEAD
     catagory: [],
     message: [],
   }
@@ -30,6 +31,25 @@ export default class Mainpage extends React.Component {
     })
     })
   }
+=======
+    catagory: []
+  }
+  compoentDidAmount() {
+    // getCategoryApi(token).then((responese) => {
+    //   this.setState({
+    //     catagory: response.data
+    //   })
+    // })
+  }
+  render() {
+    const catagory =// this.state.catagory
+      [
+        { tile: "alsdf", key: "3 ", name: "المطاعم", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+        { key: "1", name: "الصيدليات", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+        { key: "2", name: "سوبر ماركت", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+        { key: "4", name: "ادوات كهربائية", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+      ]
+>>>>>>> 50a7d81ab0a65fd95dd3cebf47d16dfa21cf5479
 
    
   render() {
