@@ -9,7 +9,7 @@ class Verification extends Component {
   state = {
     loading: false
   }
-  constructor(props) {
+  constructor(props) { 
     super(props);
 
 

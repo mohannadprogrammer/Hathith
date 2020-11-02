@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, FlatList, ImageBackground, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, FlatList, ImageBackground, Dimensions, ScrollView, ActivityIndicator } from 'react-native';
 import Header from '../../Components/Header/Header'
 import Carousel from '../../Components/Carousel/Carousel'
 import { dummyData } from '../../../data/data'
@@ -10,24 +10,31 @@ import Icons from '../../Assets/Icons';
 import { getCategoryApi, getShopOfCategoryApi } from '../../api'
 
 export default class Mainpage extends React.Component {
-
+  state = {
+    catagory: [],
+    message: [],
+  }
   compoentDidAmount() {
+    
     getCategoryApi(token).then((responese) => {
       this.setState({
-        catagory: response.data
+        isLoading: false,
+        catagory: response.data,
+        message :"sorry no data"
       })
+      
+   
+    }).catch((erre)=>{
+    this.setState({
+      message :"Network Erro"
+    })
     })
   }
+
+   
   render() {
+
     const catagory = this.state.catagory
-    //   [
-    //   { tile: "alsdf", key: "3 ", name: "المطاعم", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
-    //   { key: "1", name: "الصيدليات", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
-    //   { key: "2", name: "سوبر ماركت", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
-    //   { key: "4", name: "ادوات كهربائية", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
-    // ]
-
-
     const { navigation } = this.props
     return (
       <>
@@ -67,51 +74,109 @@ export default class Mainpage extends React.Component {
             <View style={{ flex: 1 }}>
               <Text style={styles.cardtitle}>المتاجر الاقرب</Text>
 
+              {
 
-              <View style={{
-                // flex: 1, 
+                this.state.isLoading ?
+                  <View style={{ flex: 1, padding: 20 }}>
+                    <ActivityIndicator />
+                  </View> :
+                  (
+                    this.state.catagory.length == 0 ?
+                      <View style={{ flex: 1, padding: 20 }}>
+                        <Text style={{ color: '#000', fontWeight: 'bold' }}>{this.state.message}</Text>
+                      </View> :
+                      <View style={{
+                        // flex: 1, 
 
-                height: 100,
-                alignItems: 'center'
-              }}>
+                        height: 100,
+                        alignItems: 'center'
+                      }}>
 
-                <FlatList
-                  data={[{ tile: "alsdf", key: "3 " }, { key: "1" }, { key: "2" }, { key: "4" }]}
-                  renderItem={({ item, ...rest }) => <OfferView key={item.key} />}
-                  // numColumns={2}
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
+                        <FlatList
+                          data={this.state.category}
+                          keyExtractor={item => item.id}
+                          renderItem={({ item }) =>
+                            <OfferView key={item.category.name}
+                            />
+                          }
+                          renderItem={({ item }) =>
+                            <Text style={{ color: '#000', fontWeight: 'bold' }}>{item.category.name} </Text>
+                          }
+                          // numColumns={2}
+                          horizontal
+                          showsHorizontalScrollIndicator={false}
 
-                  style={{
-                    // flex: 1,
-                    height: 100
+                          style={{
+                            // flex: 1,
+                            height: 100
 
-                    // backgroundColor: 'red',
-                    // width:Dimensions.get('screen').width
-                  }}
-                  style={{ paddingRight: 44 }}
-                />
+                            // backgroundColor: 'red',
+                            // width:Dimensions.get('screen').width
+                          }}
+                          style={{ paddingRight: 44 }}
+                        />
 
 
-              </View>
+                      </View>
+                  )
+
+              }
+
+
               <SafeAreaView style={{ flex: 1, marginVertical: 22 }}>
                 <Text style={styles.cardtitle2}> انواع المتاجر </Text>
-                {/* <FlatList
-                  data={[{ tile: "alsdf", key: "3 " }, { key: "1" }, { key: "2" }, { key: "4" }]}
-                  renderItem={({ item, ...rest }) => <OverViewSale navigation={this.props.navigation} key={item.key} />}
-                  numColumns={2}
-                  scrollEnabled
+                {
 
-                  style={{ marginVertical: 22 }}
-                /> */}
+                  this.state.isLoading ?
+                    <View style={{ flex: 1, padding: 20 }}>
+                      <ActivityIndicator />
+                    </View> :
+                    (
 
-                {catagory.map((item, i) => {
-                  console.log(item);
+
+                      this.state.catagory.length == 0 ?
+                        <View style={{ flex: 1, padding: 20 }}>
+                          <Text style={{ color: '#000', fontWeight: 'bold' }}>No stores from selected category</Text>
+                        </View> :
+                        <View style={{
+                          // flex: 1, 
+
+                          height: 100,
+                          alignItems: 'center'
+                        }}>
+
+                          <FlatList
+                            data={this.state.category}
+                            keyExtractor={item => item.id}
+                       
+                            renderItem={({ item }) => <OverViewSale navigation={this.props.navigation} key={item.store.name} />}
+                             renderItem={({ item }) =>
+                            <Text style={{ color: '#000', fontWeight: 'bold' }}>{item.store.name} </Text>
+                          }
+                            numColumns={2}
+                            scrollEnabled
+
+                            style={{ marginVertical: 22 }}
+                           
+                          />
 
                   return (
                     <OverViewSale navigation={this.props.navigation} key={i} data={item} />
                   )
-                })}
+                      </View>
+
+
+
+                    )
+
+
+
+                }
+
+
+
+
+
               </SafeAreaView>
             </View>
 
