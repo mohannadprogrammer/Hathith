@@ -24,9 +24,9 @@ export default class Mainpage extends React.Component {
     const catagory =// this.state.catagory
       [
         { tile: "alsdf", key: "3 ", name: "المطاعم", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
-        { key: "1", name: "الصيدليات", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
-        { key: "2", name: "سوبر ماركت", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
-        { key: "4", name: "ادوات كهربائية", image: "https://cdn.pixabay.com/photo/2017/08/02/13/10/drink-2571544_960_720.jpg" },
+        { key: "1", name: "الصيدليات", image: "https://cdn.pixabay.com/photo/2016/12/05/19/49/syringe-1884784_960_720.jpg" },
+        { key: "2", name: "سوبر ماركت", image: "https://cdn.pixabay.com/photo/2019/06/10/18/29/shopping-cart-4264939_960_720.jpg" },
+        { key: "4", name: "ادوات كهربائية", image: "https://cdn.pixabay.com/photo/2020/10/26/12/26/chip-5687264_960_720.jpg" },
       ]
 
 

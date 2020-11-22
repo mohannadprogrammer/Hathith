@@ -37,7 +37,56 @@ class Login extends Component {
     onPhoneChange = phone => {
         this.setState({ phone });
     };
+    async sendData() {
+        // console.log("slkdlf")
+        // this.setState({
+        //   loading: true
+        // })
 
+        await fetch("http://209.97.181.175:5000" + "/user/register",
+            {
+                method: 'POST',
+                headers:
+                {
+                    'Content-Type': 'application/json'
+
+                },
+
+                body: JSON.stringify(this.state)
+            }).then((response) => response.json()).then(async (responseJson) => {
+                let { code, message } = responseJson;
+                console.log(responseJson)
+
+                if (code || code == 1) {
+                    await this.saveTokenAndUserData(responseJson.userData);
+                    this.setState({
+                        loading: false
+                    })
+                    // this.props.navigation.navigate("Check", { phone: this.state.phone });
+                    this.props.navigation.dispatch(
+                        CommonActions.reset(
+                            {
+                                index: 1,
+                                routes: [
+                                    { name: 'Check' },
+
+                                ],
+                            }
+                        )
+                    )
+
+                } else {
+
+                }
+
+            }).catch((error) => {
+                this.setState({
+                    loading: false
+                })
+                console.log(error, ">>>>>>>>>>>>>>>>>>>")
+            });
+
+    }
     getErrorMessageByField(field) {
         // Checks for error message in specified field Shows error message from backend
         let message = null;
@@ -67,29 +116,47 @@ class Login extends Component {
                     <View>
                         <View style={styles.footer}>
                             <Text style={styles.title}>تسجيل الدخول</Text>
-                            <TextInput
+                            <View
                                 style={{
-                                    width: "100%",
+                                    // width: "100%",
                                     borderColor: colors.light_gray,
                                     borderWidth: 1,
 
-
+                                    flexDirection: "row",
+                                    alignItems: "center",
                                 }}
-                                value={this.state.username}
-                                placeholder="أخل رقم الجوال"
-                                keyboardType="numeric"
-                                onChangeText={text => {
-                                    this.setState({
-                                        phone: text,
-                                        disable: false
-                                    })
+                            >
+                                <View
+                                    style={{
+                                        padding: 15,
+                                        backgroundColor: colors.light_gray
+                                    }}
+                                >
+                                    <Text>+955</Text>
+                                </View>
+                                <TextInput
 
-                                }}
-                            />
+                                    value={this.state.username}
+                                    placeholder="أخل رقم الجوال"
+                                    keyboardType="numeric"
+                                    onChangeText={text => {
+                                        this.setState({
+                                            phone: text,
+                                            disable: false
+                                        })
+
+                                    }}
+                                />
+                            </View>
+
                             {
-                                this.state.phone.length !== 10 || this.state.phone === "" ?
+                                this.state.phone.length !== 9 || this.state.phone === "" ?
                                     <Text style={{ color: colors.danger, alignSelf: "center", fontSize: 12 }}>
-                                        رقم الهاتف يجب ان يتكون من 10 خانات
+                                        رقم الهاتف يجب ان يتكون من 9 خانات مثال
+                                         {/* <Text>
+                                        (+955 55 xxx xxxx)
+                                            
+                                         </Text> */}
                                     </Text> : null
                             }
                             <TouchableOpacity
@@ -103,14 +170,15 @@ class Login extends Component {
                             <TouchableOpacity
                                 onPress={() => {
                                     // alert(this.state.ph);
-                                    this.props.navigation.navigate("Check", { phone: this.state.phone });
+                                    // this.props.navigation.navigate("Check", { phone: this.state.phone });
+                                    this.sendData();
                                 }}
                                 style={[styles.botton, this.state.disable ? { backgroundColor: colors.main, opacity: 0.7 } : null]}
                                 disabled={this.state.disable}
 
                             >
 
-                                <Text style={{ color: "#FFFF", fontSize: 24 }}>تأكيد</Text>
+                                <Text style={{ color: "#FFFF", fontSize: 22 }}>تأكيد</Text>
                             </TouchableOpacity>
                             <View
                                 style={styles.line}

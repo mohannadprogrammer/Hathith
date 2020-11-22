@@ -28,12 +28,32 @@ export default class Store extends Component {
             }
 
         ]
+        const params = this.props.route.params;
+        console.log(params);
+
+        let image;
+        switch (params.id) {
+            case "1":
+                image = require("../../Assets/images/store/kfc.png");
+                break;
+            case "2":
+                image = require("../../Assets/images/store/mc.png");
+                break;
+            case "3":
+                image = require("../../Assets/images/store/beak.png");
+                break;
+            default:
+                image = require("../../Assets/images/app.png");
+                break;
+
+        }
+
         return (
             <View style={{ flex: 1 }}>
-                <CartHeader name="كنتاكي" navigate={this.props.navigation}></CartHeader>
+                <CartHeader name={this.props.route.params.name} navigate={this.props.navigation}></CartHeader>
                 <View style={styles.container}>
                     <View style={styles.background}>
-                        <Image style={styles.image} source={require("../../Assets/images/kfc.png")} />
+                        <Image style={styles.image} source={image} />
                     </View>
                     <View style={styles.list}>
                         {/* {data.map(() => (
