@@ -54,30 +54,31 @@ class Login extends Component {
 
                 body: JSON.stringify(this.state)
             }).then((response) => response.json()).then(async (responseJson) => {
-                let { code, message } = responseJson;
+                let { done } = responseJson;
                 console.log(responseJson)
+                this.props.navigation.navigate("Check", { phone: this.state.phone });
 
-                if (code || code == 1) {
-                    await this.saveTokenAndUserData(responseJson.userData);
-                    this.setState({
-                        loading: false
-                    })
-                    // this.props.navigation.navigate("Check", { phone: this.state.phone });
-                    this.props.navigation.dispatch(
-                        CommonActions.reset(
-                            {
-                                index: 1,
-                                routes: [
-                                    { name: 'Check' },
+                // if (done) {
+                //     // await this.saveTokenAndUserData(responseJson.userData);
+                //     this.setState({
+                //         loading: false
+                //     })
+                //     // this.props.navigation.navigate("Check", { phone: this.state.phone });
+                //     this.props.navigation.dispatch(
+                //         CommonActions.reset(
+                //             {
+                //                 index: 1,
+                //                 routes: [
+                //                     { name: 'Check' },
 
-                                ],
-                            }
-                        )
-                    )
+                //                 ],
+                //             }
+                //         )
+                //     )
 
-                } else {
+                // } else {
 
-                }
+                // }
 
             }).catch((error) => {
                 this.setState({
