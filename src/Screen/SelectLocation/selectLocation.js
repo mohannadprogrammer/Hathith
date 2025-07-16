@@ -11,7 +11,9 @@ export default class SelectLocation extends Component {
             latitudeDelta: .015,
             longitudeDelta: 0.005,
         },
-        location: null
+        location: null,
+        to: null,
+        flage: true
     }
     render() {
         return (
@@ -32,12 +34,22 @@ export default class SelectLocation extends Component {
                         //     "lat": coordinate.nativeEvent.coordinate.latitude,
                         //     "lng": coordinate.nativeEvent.coordinate.longitude,
                         // });
+
                         console.log(coordinate.nativeEvent.coordinate)
-                        // alert(coordinate.nativeEvent.coordinate)
-                        this.setState({
-                            location: coordinate.nativeEvent.coordinate
+                        if (this.state.flage) {
+                            this.setState({
+                                location: coordinate.nativeEvent.coordinate,
+                                flage: !this.state.flage
+                            }
+                            )
+                        } else {
+                            this.setState({
+                                to: coordinate.nativeEvent.coordinate,
+                                flage: !this.state.flage
+                            }
+                            )
                         }
-                        )
+
 
                         // setTimeout(() => {
                         //     this.props.navigation.navigate("chart")
@@ -51,10 +63,17 @@ export default class SelectLocation extends Component {
                         null :
                         <Marker
                             coordinate={this.state.location}
-
+                            title="مكان الاستلام "
                         ></Marker>
                     }
-
+                    {this.state.to === null ?
+                        null :
+                        <Marker
+                            pinColor={colors.blue}
+                            coordinate={this.state.to}
+                            title="مكان التسليم "
+                        ></Marker>
+                    }
 
                 </MapView>
 
@@ -70,6 +89,29 @@ export default class SelectLocation extends Component {
                     bottom: 10,
                     padding: 20,
                 }}>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "space-between"
+                        }}
+                    >
+                        <RadioButton
+                            status={this.state.flage ? 'checked' : 'unchecked'}
+                            // style={{
+                            //     bac
+                            // }}
+                            color="red"
+                            uncheckedColor={"red"}
+                        /><Text>مكان الاستلام</Text>
+                        <RadioButton
+                            status={!this.state.flage ? 'checked' : 'unchecked'}
+                            color={colors.blue}
+
+                            uncheckedColor={colors.blue}
+                        /><Text>مكان التوصيل</Text>
+
+                    </View>
                     <TextInput style={{
                         borderWidth: 2,
                         borderRadius: 20,
@@ -98,6 +140,7 @@ export default class SelectLocation extends Component {
 }
 // const colors = require('../../Assets/colors')
 import colors from '../../Assets/colors'
+import { RadioButton } from 'react-native-paper'
 
 const styles = StyleSheet.create({
     detailsButton: {

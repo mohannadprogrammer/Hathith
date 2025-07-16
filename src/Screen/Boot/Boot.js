@@ -9,7 +9,10 @@ export default class Boot extends Component {
         return (
             <View style={{ flex: 1, backgroundColor: colors.light_blue }}>
                 <Header name="مراسلة" />
-                <Task />
+                <Task action={() => {
+                    console.log("laksd")
+                    this.props.navigation.navigate("Location");
+                }} />
             </View>
         )
     }

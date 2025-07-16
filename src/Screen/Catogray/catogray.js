@@ -11,16 +11,21 @@ export default class catogray extends Component {
             {
                 key: "1",
                 title: "كنتاكي",
-                image: require("../../Assets/images/store/kfc.png")
+                image: require("../../Assets/images/store/kfc.png"),
+                image_path: "../../Assets/images/store/kfc.png"
+
             },
             {
                 key: "2",
                 title: "ماكدونال الرياض",
-                image: require("../../Assets/images/store/mc.png")
+                image: require("../../Assets/images/store/mc.png"),
+                image_path: "../../Assets/images/store/beak.png"
+
             }, {
                 key: "3",
                 title: "البيك",
-                image: require("../../Assets/images/store/beak.png")
+                image: require("../../Assets/images/store/beak.png"),
+                image_path: "../../Assets/images/store/beak.png"
             }
 
         ]
@@ -37,11 +42,13 @@ export default class catogray extends Component {
                         // if (item.title === "البيك") {
                         // let image = require("../../Assets/images/store/beak.png")
                         // }
+                        console.log(item);
+
                         return (
                             <TouchableOpacity style={styles.store} key={item.key}
                                 onPress={() => {
                                     // console.log(this.props.navigation)
-                                    this.props.navigation.navigate("Store")
+                                    this.props.navigation.navigate("Store", { id: item.key, name: item.title, image: item })
                                 }}
                             >
                                 <Image source={item.image} />
