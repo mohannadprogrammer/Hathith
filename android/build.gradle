@@ -3,17 +3,19 @@
 buildscript {
     ext {
         buildToolsVersion = "29.0.2"
-        minSdkVersion = 16
+        minSdkVersion = 21
         compileSdkVersion = 29
         playServicesVersion = "17.0.0"
         targetSdkVersion = 29
     }
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
     dependencies {
         classpath("com.android.tools.build:gradle:3.5.3")
+         
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -22,6 +24,7 @@ buildscript {
 allprojects {
     repositories {
         mavenLocal()
+        maven { url 'https://maven.fabric.io/public' }
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url("$rootDir/../node_modules/react-native/android")
@@ -32,7 +35,14 @@ allprojects {
         }
 
         google()
+        mavenCentral()
         jcenter()
         maven { url 'https://www.jitpack.io' }
+    }
+    configurations.all {
+        resolutionStrategy {
+            force 'com.squareup.okhttp3:okhttp:4.10.0'
+            force 'com.squareup.okio:okio:2.10.0'
+        }
     }
 }
